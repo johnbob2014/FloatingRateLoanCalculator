@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  FRLCAppDelegate.h
 //  FloatingRateLoanCalculator
 //
 //  Created by BobZhang on 16/12/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface FRLCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
