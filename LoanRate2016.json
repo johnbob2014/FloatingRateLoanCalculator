@@ -1,0 +1,141 @@
+{
+  "Housing Provident Fund": [
+    {
+      "AdjustDate": "1999-09-21",
+      "RateLessOrEqual5Years": 4.14,
+      "RateMoreThan5Years": 4.59
+    },
+    {
+      "AdjustDate": "2002-02-21",
+      "RateLessOrEqual5Years": 3.6,
+      "RateMoreThan5Years": 4.05
+    },
+    {
+      "AdjustDate": "2004-10-29",
+      "RateLessOrEqual5Years": 3.78,
+      "RateMoreThan5Years": 4.23
+    },
+    {
+      "AdjustDate": "2005-03-17",
+      "RateLessOrEqual5Years": 3.96,
+      "RateMoreThan5Years": 4.41
+    },
+    {
+      "AdjustDate": "2006-04-28",
+      "RateLessOrEqual5Years": 4.14,
+      "RateMoreThan5Years": 4.59
+    },
+    {
+      "AdjustDate": "2007-03-18",
+      "RateLessOrEqual5Years": 4.32,
+      "RateMoreThan5Years": 4.77
+    },
+    {
+      "AdjustDate": "2007-05-19",
+      "RateLessOrEqual5Years": 4.41,
+      "RateMoreThan5Years": 4.86
+    },
+    {
+      "AdjustDate": "2007-07-21",
+      "RateLessOrEqual5Years": 4.5,
+      "RateMoreThan5Years": 4.95
+    },
+    {
+      "AdjustDate": "2007-08-22",
+      "RateLessOrEqual5Years": 4.59,
+      "RateMoreThan5Years": 5.04
+    },
+    {
+      "AdjustDate": "2007-09-14",
+      "RateLessOrEqual5Years": 4.77,
+      "RateMoreThan5Years": 5.22
+    },
+    {
+      "AdjustDate": "2008-09-16",
+      "RateLessOrEqual5Years": 4.59,
+      "RateMoreThan5Years": 4.86
+    },
+    {
+      "AdjustDate": "2008-10-09",
+      "RateLessOrEqual5Years": 4.32,
+      "RateMoreThan5Years": 4.86
+    },
+    {
+      "AdjustDate": "2008-10-27",
+      "RateLessOrEqual5Years": 4.05,
+      "RateMoreThan5Years": 4.59
+    },
+    {
+      "AdjustDate": "2008-11-27",
+      "RateLessOrEqual5Years": 3.51,
+      "RateMoreThan5Years": 4.05
+    },
+    {
+      "AdjustDate": "2008-12-23",
+      "RateLessOrEqual5Years": 3.33,
+      "RateMoreThan5Years": 3.87
+    },
+    {
+      "AdjustDate": "2010-10-20",
+      "RateLessOrEqual5Years": 3.5,
+      "RateMoreThan5Years": 4.05
+    },
+    {
+      "AdjustDate": "2010-12-26",
+      "RateLessOrEqual5Years": 3.75,
+      "RateMoreThan5Years": 4.3
+    },
+    {
+      "AdjustDate": "2011-02-09",
+      "RateLessOrEqual5Years": 4,
+      "RateMoreThan5Years": 4.5
+    },
+    {
+      "AdjustDate": "2011-04-06",
+      "RateLessOrEqual5Years": 4.2,
+      "RateMoreThan5Years": 4.7
+    },
+    {
+      "AdjustDate": "2011-07-07",
+      "RateLessOrEqual5Years": 4.45,
+      "RateMoreThan5Years": 4.9
+    },
+    {
+      "AdjustDate": "2012-06-08",
+      "RateLessOrEqual5Years": 4.2,
+      "RateMoreThan5Years": 4.7
+    },
+    {
+      "AdjustDate": "2012-07-06",
+      "RateLessOrEqual5Years": 4,
+      "RateMoreThan5Years": 4.5
+    },
+    {
+      "AdjustDate": "2014-11-22",
+      "RateLessOrEqual5Years": 3.75,
+      "RateMoreThan5Years": 4.25
+    },
+    {
+      "AdjustDate": "2015-03-01",
+      "RateLessOrEqual5Years": 3.5,
+      "RateMoreThan5Years": 4
+    },
+    {
+      "AdjustDate": "2015-05-11",
+      "RateLessOrEqual5Years": 3.25,
+      "RateMoreThan5Years": 3.75
+    },
+    {
+      "AdjustDate": "2015-05-28",
+      "RateLessOrEqual5Years": 3,
+      "RateMoreThan5Years": 3.5
+    },
+    {
+      "AdjustDate": "2015-08-26",
+      "RateLessOrEqual5Years": 2.75,
+      "RateMoreThan5Years": 3.25
+    }
+  ],
+  "Commerce": [
+  ]
+}

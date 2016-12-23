@@ -12,7 +12,12 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
-#endif /* PrefixHeader_pch */
+#define kTotalForMonth @"kTotalForMonth"
+#define KPrincipalForMonth @"KPrincipalForMonth"
+#define kInterestForMonth @"kInterestForMonth"
+#define kRestPrincipal @"kRestPrincipal"
+#define kAllPayed @"kAllPayed"
+#define kAllPayedPlusRestPrincipal @"kAllPayedPlusRestPrincipal"
 
 #define DEBUGMODE 1
 
@@ -33,4 +38,47 @@
 
 #import "UIView+AutoLayout.h"
 
+#import "NSDate+Assistant.h"
 #import "UIButton+Assistant.h"
+#import "UILabel+Assistant.h"
+#import "UIAlertController+Assistant.h"
+#import "UIFont+Assistant.h"
+
+#import "Chameleon.h"
+
+/**
+ 贷款类型，单一贷款、组合贷款、分期付款
+ */
+typedef NS_ENUM(NSInteger,LoanType){
+    LoanTypeSingleLoan = 0, // 单一贷款
+    LoanTypeCombinedLoan,   // 组合贷款
+    LoanTypeInstallment     // 分期付款
+};
+
+/**
+ 贷款贷方类型，公积金贷款、商业贷款
+ */
+typedef NS_ENUM(NSInteger,LoanCreditorType){
+    LoanCreditorTypeHousingProvidentFund = 0,   //公积金贷款
+    LoanCreditorTypeCustom,                     //自定义贷款
+    LoanCreditorTypeCommerce                    //商业贷款
+};
+
+/**
+ 贷款利率类型，固定利率、浮动利率
+ */
+typedef NS_ENUM(NSInteger,LoanRateType){
+    LoanRateTypeFixedRate = 0,  //固定利率
+    LoanRateTypeFloatingRate    //浮动利率
+};
+
+/**
+ 贷款还款类型，等额本金、等额本息
+ */
+typedef NS_ENUM(NSInteger,LoanRepayType){
+    LoanRepayTypeAverageCapital = 0,  //等额本金
+    LoanRepayTypeAverageTotal         //等额本息
+};
+
+#endif /* PrefixHeader_pch */
+

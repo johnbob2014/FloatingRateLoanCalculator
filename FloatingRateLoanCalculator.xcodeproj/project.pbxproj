@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22CFF4F10803949CD7E15EFB /* libPods-FloatingRateLoanCalculator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */; };
+		4B0BFBA51E0BCD30003BE68F /* UIAlertController+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */; };
+		4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */; };
+		4B0CDDC71E0BA95A00BBC980 /* UILabel+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CDDC61E0BA95A00BBC980 /* UILabel+Assistant.m */; };
+		4B0E482E1E0908DE0049ED74 /* FRLCSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E482D1E0908DE0049ED74 /* FRLCSettingManager.m */; };
+		4B4A3ECD1E0A1419008093AE /* GCDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3ECC1E0A1419008093AE /* GCDetailTableViewCell.m */; };
+		4B4A3ED01E0A1E2D008093AE /* FRLResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */; };
+		4B4A3EED1E0A24FC008093AE /* Chameleon_.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3ED41E0A24FC008093AE /* Chameleon_.m */; };
+		4B4A3EEE1E0A24FC008093AE /* ChameleonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3ED61E0A24FC008093AE /* ChameleonConstants.m */; };
+		4B4A3EEF1E0A24FC008093AE /* NSArray+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EDA1E0A24FC008093AE /* NSArray+Chameleon.m */; };
+		4B4A3EF01E0A24FC008093AE /* UIAppearance+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EDC1E0A24FC008093AE /* UIAppearance+Swift.m */; };
+		4B4A3EF11E0A24FC008093AE /* UIButton+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EDE1E0A24FC008093AE /* UIButton+Chameleon.m */; };
+		4B4A3EF21E0A24FC008093AE /* UIColor+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EE01E0A24FC008093AE /* UIColor+Chameleon.m */; };
+		4B4A3EF31E0A24FC008093AE /* UIColor+ChameleonPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EE21E0A24FC008093AE /* UIColor+ChameleonPrivate.m */; };
+		4B4A3EF41E0A24FC008093AE /* UIImage+ChameleonPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EE41E0A24FC008093AE /* UIImage+ChameleonPrivate.m */; };
+		4B4A3EF51E0A24FC008093AE /* UILabel+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EE61E0A24FC008093AE /* UILabel+Chameleon.m */; };
+		4B4A3EF61E0A24FC008093AE /* UINavigationController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EE81E0A24FC008093AE /* UINavigationController+Chameleon.m */; };
+		4B4A3EF71E0A24FC008093AE /* UIView+ChameleonPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EEA1E0A24FC008093AE /* UIView+ChameleonPrivate.m */; };
+		4B4A3EF81E0A24FC008093AE /* UIViewController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3EEC1E0A24FC008093AE /* UIViewController+Chameleon.m */; };
+		4B4EE4041E0CD1B400828FCA /* NSDate+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EE4031E0CD1B400828FCA /* NSDate+Assistant.m */; };
 		4B67EA1E1E0372AD00BAD828 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B67EA191E0372AD00BAD828 /* FontAwesome.ttf */; };
 		4B67EA1F1E0372AD00BAD828 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67EA1B1E0372AD00BAD828 /* NSString+FontAwesome.m */; };
 		4B67EA201E0372AD00BAD828 /* UIButton+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67EA1D1E0372AD00BAD828 /* UIButton+Assistant.m */; };
@@ -16,11 +36,53 @@
 		4BDA2EC01E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2EBE1E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld */; };
 		4BDA2EC21E028E8500939360 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA2EC11E028E8500939360 /* Assets.xcassets */; };
 		4BDA2EC51E028E8500939360 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA2EC31E028E8500939360 /* LaunchScreen.storyboard */; };
-		4BDA2ECE1E02962300939360 /* FRLCMainRETVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2ECD1E02962300939360 /* FRLCMainRETVC.m */; };
+		4BDA2ECE1E02962300939360 /* FRLInteractionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */; };
 		4BDA2ED41E02982700939360 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2ED31E02982700939360 /* UIView+AutoLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FloatingRateLoanCalculator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B0BFBA31E0BCD30003BE68F /* UIAlertController+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Assistant.h"; sourceTree = "<group>"; };
+		4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Assistant.m"; sourceTree = "<group>"; };
+		4B0BFBA71E0BD45F003BE68F /* UIFont+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Assistant.h"; sourceTree = "<group>"; };
+		4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Assistant.m"; sourceTree = "<group>"; };
+		4B0CDDC51E0BA95A00BBC980 /* UILabel+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Assistant.h"; sourceTree = "<group>"; };
+		4B0CDDC61E0BA95A00BBC980 /* UILabel+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Assistant.m"; sourceTree = "<group>"; };
+		4B0E482C1E0908DE0049ED74 /* FRLCSettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLCSettingManager.h; path = FRLCModels/FRLCSettingManager.h; sourceTree = "<group>"; };
+		4B0E482D1E0908DE0049ED74 /* FRLCSettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLCSettingManager.m; path = FRLCModels/FRLCSettingManager.m; sourceTree = "<group>"; };
+		4B4A3ECB1E0A1419008093AE /* GCDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDetailTableViewCell.h; path = GCDetailTableViewCell/GCDetailTableViewCell.h; sourceTree = "<group>"; };
+		4B4A3ECC1E0A1419008093AE /* GCDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDetailTableViewCell.m; path = GCDetailTableViewCell/GCDetailTableViewCell.m; sourceTree = "<group>"; };
+		4B4A3ECE1E0A1E2D008093AE /* FRLResultVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLResultVC.h; path = FRLCVisualViewControllers/FRLResultVC.h; sourceTree = "<group>"; };
+		4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLResultVC.m; path = FRLCVisualViewControllers/FRLResultVC.m; sourceTree = "<group>"; };
+		4B4A3ED21E0A24FC008093AE /* Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chameleon.h; sourceTree = "<group>"; };
+		4B4A3ED31E0A24FC008093AE /* Chameleon_.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chameleon_.h; sourceTree = "<group>"; };
+		4B4A3ED41E0A24FC008093AE /* Chameleon_.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chameleon_.m; sourceTree = "<group>"; };
+		4B4A3ED51E0A24FC008093AE /* ChameleonConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonConstants.h; sourceTree = "<group>"; };
+		4B4A3ED61E0A24FC008093AE /* ChameleonConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChameleonConstants.m; sourceTree = "<group>"; };
+		4B4A3ED71E0A24FC008093AE /* ChameleonEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonEnums.h; sourceTree = "<group>"; };
+		4B4A3ED81E0A24FC008093AE /* ChameleonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonMacros.h; sourceTree = "<group>"; };
+		4B4A3ED91E0A24FC008093AE /* NSArray+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Chameleon.h"; sourceTree = "<group>"; };
+		4B4A3EDA1E0A24FC008093AE /* NSArray+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Chameleon.m"; sourceTree = "<group>"; };
+		4B4A3EDB1E0A24FC008093AE /* UIAppearance+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+Swift.h"; sourceTree = "<group>"; };
+		4B4A3EDC1E0A24FC008093AE /* UIAppearance+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAppearance+Swift.m"; sourceTree = "<group>"; };
+		4B4A3EDD1E0A24FC008093AE /* UIButton+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Chameleon.h"; sourceTree = "<group>"; };
+		4B4A3EDE1E0A24FC008093AE /* UIButton+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Chameleon.m"; sourceTree = "<group>"; };
+		4B4A3EDF1E0A24FC008093AE /* UIColor+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Chameleon.h"; sourceTree = "<group>"; };
+		4B4A3EE01E0A24FC008093AE /* UIColor+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Chameleon.m"; sourceTree = "<group>"; };
+		4B4A3EE11E0A24FC008093AE /* UIColor+ChameleonPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ChameleonPrivate.h"; sourceTree = "<group>"; };
+		4B4A3EE21E0A24FC008093AE /* UIColor+ChameleonPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ChameleonPrivate.m"; sourceTree = "<group>"; };
+		4B4A3EE31E0A24FC008093AE /* UIImage+ChameleonPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ChameleonPrivate.h"; sourceTree = "<group>"; };
+		4B4A3EE41E0A24FC008093AE /* UIImage+ChameleonPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ChameleonPrivate.m"; sourceTree = "<group>"; };
+		4B4A3EE51E0A24FC008093AE /* UILabel+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Chameleon.h"; sourceTree = "<group>"; };
+		4B4A3EE61E0A24FC008093AE /* UILabel+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Chameleon.m"; sourceTree = "<group>"; };
+		4B4A3EE71E0A24FC008093AE /* UINavigationController+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Chameleon.h"; sourceTree = "<group>"; };
+		4B4A3EE81E0A24FC008093AE /* UINavigationController+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Chameleon.m"; sourceTree = "<group>"; };
+		4B4A3EE91E0A24FC008093AE /* UIView+ChameleonPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ChameleonPrivate.h"; sourceTree = "<group>"; };
+		4B4A3EEA1E0A24FC008093AE /* UIView+ChameleonPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ChameleonPrivate.m"; sourceTree = "<group>"; };
+		4B4A3EEB1E0A24FC008093AE /* UIViewController+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Chameleon.h"; sourceTree = "<group>"; };
+		4B4A3EEC1E0A24FC008093AE /* UIViewController+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Chameleon.m"; sourceTree = "<group>"; };
+		4B4EE4021E0CD1B400828FCA /* NSDate+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Assistant.h"; sourceTree = "<group>"; };
+		4B4EE4031E0CD1B400828FCA /* NSDate+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Assistant.m"; sourceTree = "<group>"; };
 		4B67EA191E0372AD00BAD828 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		4B67EA1A1E0372AD00BAD828 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
 		4B67EA1B1E0372AD00BAD828 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
@@ -36,11 +98,13 @@
 		4BDA2EC11E028E8500939360 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BDA2EC41E028E8500939360 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BDA2EC61E028E8500939360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BDA2ECC1E02962300939360 /* FRLCMainRETVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLCMainRETVC.h; path = FRLCVisualViewControllers/FRLCMainRETVC.h; sourceTree = "<group>"; };
-		4BDA2ECD1E02962300939360 /* FRLCMainRETVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLCMainRETVC.m; path = FRLCVisualViewControllers/FRLCMainRETVC.m; sourceTree = "<group>"; };
+		4BDA2ECC1E02962300939360 /* FRLInteractionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLInteractionVC.h; path = FRLCVisualViewControllers/FRLInteractionVC.h; sourceTree = "<group>"; };
+		4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLInteractionVC.m; path = FRLCVisualViewControllers/FRLInteractionVC.m; sourceTree = "<group>"; };
 		4BDA2ECF1E02972B00939360 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4BDA2ED21E02982700939360 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		4BDA2ED31E02982700939360 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		4D265014F8CE775193B32C38 /* Pods-FloatingRateLoanCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingRateLoanCalculator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingRateLoanCalculator/Pods-FloatingRateLoanCalculator.debug.xcconfig"; sourceTree = "<group>"; };
+		807F6E97CA8649A8284E551B /* Pods-FloatingRateLoanCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingRateLoanCalculator.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingRateLoanCalculator/Pods-FloatingRateLoanCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,12 +112,107 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22CFF4F10803949CD7E15EFB /* libPods-FloatingRateLoanCalculator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B0BFBA21E0BCD30003BE68F /* UIAlertController+Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				4B0BFBA31E0BCD30003BE68F /* UIAlertController+Assistant.h */,
+				4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */,
+			);
+			path = "UIAlertController+Assistant";
+			sourceTree = "<group>";
+		};
+		4B0BFBA61E0BD45F003BE68F /* UIFont+Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				4B0BFBA71E0BD45F003BE68F /* UIFont+Assistant.h */,
+				4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */,
+			);
+			path = "UIFont+Assistant";
+			sourceTree = "<group>";
+		};
+		4B0CDDC41E0BA95A00BBC980 /* UILabel+Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				4B0CDDC51E0BA95A00BBC980 /* UILabel+Assistant.h */,
+				4B0CDDC61E0BA95A00BBC980 /* UILabel+Assistant.m */,
+			);
+			path = "UILabel+Assistant";
+			sourceTree = "<group>";
+		};
+		4B4A3EC91E0A138E008093AE /* GeneralClass */ = {
+			isa = PBXGroup;
+			children = (
+				4B4A3ECA1E0A13D7008093AE /* GCDetailTableViewCell */,
+			);
+			name = GeneralClass;
+			sourceTree = "<group>";
+		};
+		4B4A3ECA1E0A13D7008093AE /* GCDetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4B4A3ECB1E0A1419008093AE /* GCDetailTableViewCell.h */,
+				4B4A3ECC1E0A1419008093AE /* GCDetailTableViewCell.m */,
+			);
+			name = GCDetailTableViewCell;
+			sourceTree = "<group>";
+		};
+		4B4A3ED11E0A24FC008093AE /* Chameleon */ = {
+			isa = PBXGroup;
+			children = (
+				4B4A3ED21E0A24FC008093AE /* Chameleon.h */,
+				4B4A3ED31E0A24FC008093AE /* Chameleon_.h */,
+				4B4A3ED41E0A24FC008093AE /* Chameleon_.m */,
+				4B4A3ED51E0A24FC008093AE /* ChameleonConstants.h */,
+				4B4A3ED61E0A24FC008093AE /* ChameleonConstants.m */,
+				4B4A3ED71E0A24FC008093AE /* ChameleonEnums.h */,
+				4B4A3ED81E0A24FC008093AE /* ChameleonMacros.h */,
+				4B4A3ED91E0A24FC008093AE /* NSArray+Chameleon.h */,
+				4B4A3EDA1E0A24FC008093AE /* NSArray+Chameleon.m */,
+				4B4A3EDB1E0A24FC008093AE /* UIAppearance+Swift.h */,
+				4B4A3EDC1E0A24FC008093AE /* UIAppearance+Swift.m */,
+				4B4A3EDD1E0A24FC008093AE /* UIButton+Chameleon.h */,
+				4B4A3EDE1E0A24FC008093AE /* UIButton+Chameleon.m */,
+				4B4A3EDF1E0A24FC008093AE /* UIColor+Chameleon.h */,
+				4B4A3EE01E0A24FC008093AE /* UIColor+Chameleon.m */,
+				4B4A3EE11E0A24FC008093AE /* UIColor+ChameleonPrivate.h */,
+				4B4A3EE21E0A24FC008093AE /* UIColor+ChameleonPrivate.m */,
+				4B4A3EE31E0A24FC008093AE /* UIImage+ChameleonPrivate.h */,
+				4B4A3EE41E0A24FC008093AE /* UIImage+ChameleonPrivate.m */,
+				4B4A3EE51E0A24FC008093AE /* UILabel+Chameleon.h */,
+				4B4A3EE61E0A24FC008093AE /* UILabel+Chameleon.m */,
+				4B4A3EE71E0A24FC008093AE /* UINavigationController+Chameleon.h */,
+				4B4A3EE81E0A24FC008093AE /* UINavigationController+Chameleon.m */,
+				4B4A3EE91E0A24FC008093AE /* UIView+ChameleonPrivate.h */,
+				4B4A3EEA1E0A24FC008093AE /* UIView+ChameleonPrivate.m */,
+				4B4A3EEB1E0A24FC008093AE /* UIViewController+Chameleon.h */,
+				4B4A3EEC1E0A24FC008093AE /* UIViewController+Chameleon.m */,
+			);
+			path = Chameleon;
+			sourceTree = "<group>";
+		};
+		4B4EE4011E0CD1B400828FCA /* NSDate+Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				4B4EE4021E0CD1B400828FCA /* NSDate+Assistant.h */,
+				4B4EE4031E0CD1B400828FCA /* NSDate+Assistant.m */,
+			);
+			path = "NSDate+Assistant";
+			sourceTree = "<group>";
+		};
+		4B61F1661E0B632000DBF2BC /* FRLCCoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FRLCCoreData;
+			sourceTree = "<group>";
+		};
 		4B67EA181E0372AD00BAD828 /* UIButton+Assistant */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +230,8 @@
 			children = (
 				4B67EA231E037BDE00BAD828 /* FloatingRateLoan.h */,
 				4B67EA241E037BDE00BAD828 /* FloatingRateLoan.m */,
+				4B0E482C1E0908DE0049ED74 /* FRLCSettingManager.h */,
+				4B0E482D1E0908DE0049ED74 /* FRLCSettingManager.m */,
 			);
 			name = FRLCModels;
 			sourceTree = "<group>";
@@ -78,8 +239,10 @@
 		4B67EA221E037B3000BAD828 /* FRLCVisualViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4BDA2ECC1E02962300939360 /* FRLCMainRETVC.h */,
-				4BDA2ECD1E02962300939360 /* FRLCMainRETVC.m */,
+				4BDA2ECC1E02962300939360 /* FRLInteractionVC.h */,
+				4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */,
+				4B4A3ECE1E0A1E2D008093AE /* FRLResultVC.h */,
+				4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */,
 			);
 			name = FRLCVisualViewControllers;
 			sourceTree = "<group>";
@@ -87,9 +250,12 @@
 		4BDA2EA61E028E8500939360 = {
 			isa = PBXGroup;
 			children = (
+				4B4A3EC91E0A138E008093AE /* GeneralClass */,
 				4BDA2ED01E0297DD00939360 /* GeneralCategory */,
 				4BDA2EB11E028E8500939360 /* FloatingRateLoanCalculator */,
 				4BDA2EB01E028E8500939360 /* Products */,
+				B3E446338D3E109668BBB5A4 /* Pods */,
+				B663EE33E100893C8AF825C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +270,7 @@
 		4BDA2EB11E028E8500939360 /* FloatingRateLoanCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				4B61F1661E0B632000DBF2BC /* FRLCCoreData */,
 				4B67EA221E037B3000BAD828 /* FRLCVisualViewControllers */,
 				4B67EA211E037B2800BAD828 /* FRLCModels */,
 				4BDA2EB51E028E8500939360 /* FRLCAppDelegate.h */,
@@ -129,6 +296,11 @@
 		4BDA2ED01E0297DD00939360 /* GeneralCategory */ = {
 			isa = PBXGroup;
 			children = (
+				4B4EE4011E0CD1B400828FCA /* NSDate+Assistant */,
+				4B0BFBA61E0BD45F003BE68F /* UIFont+Assistant */,
+				4B0BFBA21E0BCD30003BE68F /* UIAlertController+Assistant */,
+				4B0CDDC41E0BA95A00BBC980 /* UILabel+Assistant */,
+				4B4A3ED11E0A24FC008093AE /* Chameleon */,
 				4B67EA181E0372AD00BAD828 /* UIButton+Assistant */,
 				4BDA2ED11E02982700939360 /* UIView+AutoLayout */,
 			);
@@ -144,6 +316,23 @@
 			path = "UIView+AutoLayout";
 			sourceTree = "<group>";
 		};
+		B3E446338D3E109668BBB5A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D265014F8CE775193B32C38 /* Pods-FloatingRateLoanCalculator.debug.xcconfig */,
+				807F6E97CA8649A8284E551B /* Pods-FloatingRateLoanCalculator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B663EE33E100893C8AF825C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,9 +340,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BDA2EC91E028E8500939360 /* Build configuration list for PBXNativeTarget "FloatingRateLoanCalculator" */;
 			buildPhases = (
+				D068334842D081C3E2C3AC4B /* 📦 Check Pods Manifest.lock */,
 				4BDA2EAB1E028E8500939360 /* Sources */,
 				4BDA2EAC1E028E8500939360 /* Frameworks */,
 				4BDA2EAD1E028E8500939360 /* Resources */,
+				42A50E86F51B5FC60BC104E6 /* 📦 Embed Pods Frameworks */,
+				3CD2582687F84948B282BE1F /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,19 +402,86 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3CD2582687F84948B282BE1F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FloatingRateLoanCalculator/Pods-FloatingRateLoanCalculator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42A50E86F51B5FC60BC104E6 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FloatingRateLoanCalculator/Pods-FloatingRateLoanCalculator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D068334842D081C3E2C3AC4B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4BDA2EAB1E028E8500939360 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0BFBA51E0BCD30003BE68F /* UIAlertController+Assistant.m in Sources */,
+				4B4A3EF11E0A24FC008093AE /* UIButton+Chameleon.m in Sources */,
+				4B4A3EF71E0A24FC008093AE /* UIView+ChameleonPrivate.m in Sources */,
+				4B4A3ECD1E0A1419008093AE /* GCDetailTableViewCell.m in Sources */,
+				4B4A3EEE1E0A24FC008093AE /* ChameleonConstants.m in Sources */,
+				4B4A3EF21E0A24FC008093AE /* UIColor+Chameleon.m in Sources */,
+				4B4A3EF01E0A24FC008093AE /* UIAppearance+Swift.m in Sources */,
 				4BDA2ED41E02982700939360 /* UIView+AutoLayout.m in Sources */,
+				4B4A3EF31E0A24FC008093AE /* UIColor+ChameleonPrivate.m in Sources */,
 				4BDA2EB71E028E8500939360 /* FRLCAppDelegate.m in Sources */,
+				4B0CDDC71E0BA95A00BBC980 /* UILabel+Assistant.m in Sources */,
+				4B4EE4041E0CD1B400828FCA /* NSDate+Assistant.m in Sources */,
 				4B67EA1F1E0372AD00BAD828 /* NSString+FontAwesome.m in Sources */,
+				4B4A3ED01E0A1E2D008093AE /* FRLResultVC.m in Sources */,
 				4BDA2EB41E028E8500939360 /* main.m in Sources */,
-				4BDA2ECE1E02962300939360 /* FRLCMainRETVC.m in Sources */,
+				4B4A3EF41E0A24FC008093AE /* UIImage+ChameleonPrivate.m in Sources */,
+				4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */,
+				4B4A3EED1E0A24FC008093AE /* Chameleon_.m in Sources */,
+				4B0E482E1E0908DE0049ED74 /* FRLCSettingManager.m in Sources */,
+				4BDA2ECE1E02962300939360 /* FRLInteractionVC.m in Sources */,
+				4B4A3EF51E0A24FC008093AE /* UILabel+Chameleon.m in Sources */,
+				4B4A3EF81E0A24FC008093AE /* UIViewController+Chameleon.m in Sources */,
 				4B67EA201E0372AD00BAD828 /* UIButton+Assistant.m in Sources */,
 				4BDA2EC01E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld in Sources */,
+				4B4A3EF61E0A24FC008093AE /* UINavigationController+Chameleon.m in Sources */,
 				4B67EA251E037BDE00BAD828 /* FloatingRateLoan.m in Sources */,
+				4B4A3EEF1E0A24FC008093AE /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +591,7 @@
 		};
 		4BDA2ECA1E028E8500939360 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D265014F8CE775193B32C38 /* Pods-FloatingRateLoanCalculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = FloatingRateLoanCalculator/PrefixHeader.pch;
@@ -345,6 +605,7 @@
 		};
 		4BDA2ECB1E028E8500939360 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 807F6E97CA8649A8284E551B /* Pods-FloatingRateLoanCalculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREFIX_HEADER = FloatingRateLoanCalculator/PrefixHeader.pch;

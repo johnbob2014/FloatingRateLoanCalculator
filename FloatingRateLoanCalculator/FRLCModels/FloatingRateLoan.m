@@ -6,66 +6,90 @@
 //  Copyright © 2016年 ZhangBaoGuo. All rights reserved.
 //
 
+/*
 static NSString * const kTotalForMonth=@"kTotalForMonth";
 static NSString * const KPrincipalForMonth=@"KPrincipalForMonth";
 static NSString * const kInterestForMonth=@"kInterestForMonth";
 static NSString * const kRestPrincipal=@"kRestPrincipal";
 static NSString * const kAllPayed=@"kAllPayed";
 static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal";
+*/
 
 #import "FloatingRateLoan.h"
 
 @interface FloatingRateLoan()
 
-/**
- 贷款期次（月数）
- */
-//@property(assign,nonatomic) int nMonthCounts;
+@property(assign,nonatomic,readwrite) NSInteger firstRepayYear;
 
-/**
- 贷款月利率
- */
-//@property(assign,nonatomic) float iRateForMonth;
+@property(assign,nonatomic,readwrite) NSInteger firstRepayMonth;
+
+@property(assign,nonatomic,readwrite) NSInteger calculateYearCount;
 
 @end
 
 @implementation FloatingRateLoan
 
-/*
--(float) totalInterest{
-    float totalInterest=0;
-    switch (_repayType) {
-        case 0:
-            //总利息（n+1）*a*i/2
-            totalInterest=(_nMonthCounts+1)*_aTotal*_iRateForMonth/2;
-            break;
-        case 1:
-            //总利息 Y=n*a*i*（1＋i）^n/[（1＋i）^n－1]-a
-            totalInterest=_nMonthCounts*_aTotal*_iRateForMonth*powf(1+_iRateForMonth, _nMonthCounts)/(powf(1+_iRateForMonth, _nMonthCounts)-1)-_aTotal;
-            break;
-            
-        default:
-            break;
-    }
-    return totalInterest;
+- (void)setNYearCount:(NSInteger)nYearCount{
+    _nYearCount = nYearCount;
+    self.calculateYearCount = nYearCount;
 }
-*/
+
+- (void)setFirstRepayDate:(NSDate *)firstRepayDate{
+    _firstRepayDate = firstRepayDate;
+    
+    NSDateComponents *dateComponents = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self.firstRepayDate];
+    
+    self.firstRepayYear = dateComponents.year;
+    self.firstRepayMonth = dateComponents.month;
+}
+
+- (void)setFirstRepayMonth:(NSInteger)firstRepayMonth{
+    _firstRepayMonth = firstRepayMonth;
+    if (firstRepayMonth != 1) self.calculateYearCount = self.nYearCount + 1;
+}
+
 
 -(NSMutableDictionary <NSString *,NSArray *> *)calculateDataForYear:(NSInteger)yearIndex previousDictionary:(NSMutableDictionary <NSString *,NSArray *> *)previousDictionary{
     
-    if (yearIndex >= self.nYearCount) return nil;
+    // 当年年度利率
+    float iCurrentRateForMonth = 0.0;
+    if (yearIndex > self.nYearCount) return nil;
+    else if (yearIndex < self.nYearCount) iCurrentRateForMonth = [self.iRateForYearArray[yearIndex] floatValue] / 12.0 / 100.0;
+    else if (yearIndex == self.nYearCount){
+        // 如果不是从1月开始还款，则会多出一个还款年度，使用数组的最后一个利率进行计算
+        // 不论用户是否提供了最后一个年度的利率，都可以完成计算
+        iCurrentRateForMonth = [[self.iRateForYearArray lastObject] floatValue] / 12.0 / 100.0;
+    }
+    
+    // 计算每个还款年度的月数、剩余还款月数
+    // 当前年度的月数
+    int monthCountForCurrentYear = 12;
+    // 剩余期次
+    NSUInteger nLeftMonthCount = self.nYearCount * 12;
+    
+    NSDateComponents *dateComponents = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self.firstRepayDate];
+    int monthCountForFirstYear = 12 - dateComponents.month + 1;
+    int monthCountForLastYear = 12 - monthCountForFirstYear;
+    
+    //首年的月数
+    if (yearIndex == 0) {
+        monthCountForCurrentYear = monthCountForFirstYear;
+    }
+    else if (yearIndex > 0 && yearIndex < self.nYearCount){
+        monthCountForCurrentYear = 12;
+        nLeftMonthCount = self.nYearCount * 12 - monthCountForFirstYear - (yearIndex - 1) * 12;
+    }
+    //尾年的月数（多出的一个还款年度）
+    else if (yearIndex == self.nYearCount) {
+        monthCountForCurrentYear = monthCountForLastYear;
+        nLeftMonthCount = monthCountForCurrentYear;
+    }
     
     // 上年剩余本金
     float aLeftTotal = self.aTotal;
     if (yearIndex > 0 && previousDictionary){
         aLeftTotal = [[[previousDictionary valueForKey:kRestPrincipal] lastObject] floatValue];
     }
-    
-    // 剩余期次
-    NSUInteger nLeftMonthCount = (self.nYearCount - yearIndex) * 12;
-    
-    // 当年年度利率
-    float iCurrentRateForMonth = [self.iRateForYearArray[yearIndex] floatValue] / 12.0 / 100.0;
     
     double principalForMonth=0;//当月本金
     double interestForMonth=0;//当月利息
@@ -81,18 +105,18 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
     
     NSMutableDictionary *newDictionary=[[NSMutableDictionary alloc]initWithCapacity:6];
     
-    NSMutableArray *totalForMonthArray=[[NSMutableArray alloc]initWithCapacity:12];
-    NSMutableArray *principalForMonthArray=[[NSMutableArray alloc]initWithCapacity:12];
-    NSMutableArray *interestForMonthArray=[[NSMutableArray alloc]initWithCapacity:12];
-    NSMutableArray *restPrincipalArray=[[NSMutableArray alloc]initWithCapacity:12];
-    NSMutableArray *allPayedArray=[[NSMutableArray alloc]initWithCapacity:12];
-    NSMutableArray *allPayedPlusRestPrincipalArray=[[NSMutableArray alloc]initWithCapacity:12];
+    NSMutableArray *totalForMonthArray=[[NSMutableArray alloc]initWithCapacity:monthCountForCurrentYear];
+    NSMutableArray *principalForMonthArray=[[NSMutableArray alloc]initWithCapacity:monthCountForCurrentYear];
+    NSMutableArray *interestForMonthArray=[[NSMutableArray alloc]initWithCapacity:monthCountForCurrentYear];
+    NSMutableArray *restPrincipalArray=[[NSMutableArray alloc]initWithCapacity:monthCountForCurrentYear];
+    NSMutableArray *allPayedArray=[[NSMutableArray alloc]initWithCapacity:monthCountForCurrentYear];
+    NSMutableArray *allPayedPlusRestPrincipalArray=[[NSMutableArray alloc]initWithCapacity:monthCountForCurrentYear];
     
     if (_repayType==0) {
         //等额本金
         //每月还款额为：a/n
         principalForMonth = aLeftTotal /nLeftMonthCount;
-        for (int i=0; i<12; i++) {
+        for (int i=0; i<monthCountForCurrentYear; i++) {
             restPrincipal = aLeftTotal - i*principalForMonth;//计算用
             interestForMonth = restPrincipal * iCurrentRateForMonth;
             totalForMonth = principalForMonth + interestForMonth;
@@ -115,7 +139,7 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
         double principalPayed=0;
         //每月还款额为：b=a*i*(1+i)^n/[(1+i)^n-1]
         totalForMonth=aLeftTotal  * iCurrentRateForMonth * powf(1+iCurrentRateForMonth,nLeftMonthCount)/(powf(1+iCurrentRateForMonth,nLeftMonthCount)-1);
-        for (int i=0; i<12;i++) {
+        for (int i=0; i<monthCountForCurrentYear;i++) {
             //第n月还款利息为：（a×i－b）×（1＋i）的（n－1）次方＋b
             interestForMonth=(aLeftTotal *iCurrentRateForMonth - totalForMonth) * powf(1+iCurrentRateForMonth,i) + totalForMonth;
             principalForMonth=totalForMonth-interestForMonth;
@@ -143,8 +167,56 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
     [newDictionary setObject:restPrincipalArray forKey:kRestPrincipal];
     [newDictionary setObject:allPayedArray forKey:kAllPayed];
     [newDictionary setObject:allPayedPlusRestPrincipalArray forKey:kAllPayedPlusRestPrincipal];
+    
+    
+    
     return newDictionary;
 }
 
+- (NSMutableDictionary<NSString *,NSDictionary *> *)calculateData{
+    NSMutableDictionary<NSString *,NSDictionary *> *detailMD = [NSMutableDictionary new];
+    
+    NSDateComponents *dateComponents = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self.firstRepayDate];
+    
+    int firstYear = dateComponents.year;
+    int firstMonth = dateComponents.month;
+    
+    int yearCount = self.nYearCount;
+    if (firstMonth != 1) yearCount += 1;
+    
+    NSMutableDictionary *lastDic;
+    
+    for (int yearIndex = 0; yearIndex < yearCount; yearIndex++) {
+        
+        if (yearIndex > 0)
+            lastDic = [self calculateDataForYear:yearIndex previousDictionary:lastDic];
+        else
+            lastDic = [self calculateDataForYear:yearIndex previousDictionary:nil];
+        
+        if (lastDic) [detailMD setObject:lastDic forKey:[NSString stringWithFormat:@"%d",firstYear + yearIndex]];
+    }
+    
+    return detailMD;
+}
+
+#pragma mark - NSCoding
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    FloatingRateLoan *newFRL = [FloatingRateLoan new];
+    newFRL.aTotal = [aDecoder decodeFloatForKey:@"aTotal"];
+    newFRL.nYearCount = [aDecoder decodeIntegerForKey:@"nYearCount"];
+    newFRL.firstRepayDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"firstRepayDate"];
+    newFRL.iRateForYearArray = [aDecoder decodeObjectOfClass:[NSArray class] forKey:@"iRateForYearArray"];
+    newFRL.repayType = [aDecoder decodeIntegerForKey:@"repayType"];
+    return newFRL;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeFloat:self.aTotal forKey:@"aTotal"];
+    [aCoder encodeInteger:self.nYearCount forKey:@"nYearCount"];
+    [aCoder encodeObject:self.firstRepayDate forKey:@"firstRepayDate"];
+    [aCoder encodeObject:self.iRateForYearArray forKey:@"iRateForYearArray"];
+    [aCoder encodeInteger:self.repayType forKey:@"repayType"];
+}
 
 @end

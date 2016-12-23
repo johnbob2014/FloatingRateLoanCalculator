@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-FloatingRateLoanCalculator.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>REFormattedNumberField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RETableViewManager-RETableViewManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RETableViewManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>REValidation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4FE528A1927654209935560BAC3F5A7E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6F382365F848BB095188DE5B86A34F3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A28234C27398CE04869E5EECBE1C3D25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E707E4F228C5EB5E4BAF8A2779697E33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1852A772F55DD675BED22CAD4AA0890</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

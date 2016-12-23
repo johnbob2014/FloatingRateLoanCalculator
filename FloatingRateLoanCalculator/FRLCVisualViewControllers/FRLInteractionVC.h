@@ -1,5 +1,5 @@
 //
-//  FRLCMainRETVC.h
+//  FRLInteractionVC.h
 //  FloatingRateLoanCalculator
 //
 //  Created by BobZhang on 16/12/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FRLCMainRETVC : UIViewController
+@interface FRLInteractionVC : UIViewController
 
 @end
