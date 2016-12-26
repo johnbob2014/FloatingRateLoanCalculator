@@ -213,14 +213,36 @@
 }
 
 - (void)exportBtnTD:(UIButton *)button{
+    NSMutableString *ms = [NSMutableString new];
+    [ms appendString:infoLabelInTIV.text];
+    
+    [ms appendString:@"\n当月总额,当月本金,当月利息,已还总额,剩余本金,当月一次性还清实付"];
+    
+    for (int i=0;i<arrayTotalForMonth.count;i++){
+        [ms appendFormat:@"\n%.2f,%.2f,%.2f,%.2f,%.2f,%.2f",[arrayTotalForMonth[i] floatValue],[arrayPrincipalForMonth[i] floatValue],[arrayInterestForMonth [i] floatValue],[arrayAllPayed[i] floatValue],[arrayRestPrincipal[i] floatValue],[arrayAllPayedPlusRestPrincipal[i] floatValue]];
+    }
+    
+    NSString *dirPath = [[NSURL documentURL].path stringByAppendingPathComponent:@"导出"];
+    [NSFileManager directoryExistsAtPath:dirPath autoCreate:YES];
+    
+    NSString *exportPath = [dirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d明细.txt",self.currentYear]];
+    
+    NSError *exportError;
+    BOOL exportSucceeded = [ms writeToFile:exportPath atomically:YES encoding:NSUTF8StringEncoding error:&exportError];
+    
+    NSString *alertMessage = exportSucceeded ? @"导出成功":@"导出失败";
+    
+    UIAlertController *ac = [UIAlertController informationAlertControllerWithTitle:@"提示" message:alertMessage];
+    [self presentViewController:ac animated:YES completion:nil];
     
 }
 
 - (void)addAlertBtnTD:(UIButton *)button{
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error){
-        
+        NSLog(@"允许访问日历：%hhd",granted);
     }];
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"添加日历和提醒",@"") message:NSLocalizedString(@"将当年的还贷信息添加到日历中，并设置提醒。",@"") preferredStyle:UIAlertControllerStyleAlert];
     
 //    NSLocalizedString(@"不，我不需要添加",@"")
@@ -288,19 +310,34 @@
 
 - (void)addToCalenderWithAlertTime:(NSInteger)alertTime alertDay:(NSInteger)alertDay loanName:(NSString *)loanName{
     EKEventStore *eventStore=[[EKEventStore alloc]init];
+    
+    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+        if (!granted){
+            NSString *m1=NSLocalizedString(@"您禁用了应用的日历访问，请到“设置”→“隐私”→“日历”中启用。", @"");
+            NSString *m2=NSLocalizedString(@"系统提示:", @"");
+            NSString *message=[[NSString alloc]initWithFormat:@"%@\n%@",m1,m2];
+            
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"添加日历出错了",@"") message:message delegate:self cancelButtonTitle:NSLocalizedString(@"好的，我知道了",@"") otherButtonTitles: nil];
+            [alert show];
+        }
+    }];
+    
     NSString *alertStirng=NSLocalizedString(@"未设置提醒",@"");
     //int count = arrayTotalForMonth.count;
-    NSError *saveEventError;
+    
     
     NSDate *firstAlertDate;
     if (currentIndex == 0) firstAlertDate = [self.currentFRL.firstRepayDate dateAtStartOfThisMonth];
     else{
-        firstAlertDate = [[[self.currentFRL.firstRepayDate dateByAddingYears:currentIndex] dateAtStartOfThisYear] dateByAddingDays:alertDay - 1];
+        firstAlertDate = [[self.currentFRL.firstRepayDate dateByAddingYears:currentIndex] dateAtStartOfThisYear];
     }
+    
+    firstAlertDate = [firstAlertDate dateByAddingDays:alertDay - 1];
     
     NSInteger firstYearMonthCount = 12 - self.currentFRL.firstRepayMonth + 1;
     NSInteger currentYearMonthStartIndex = currentIndex > 0 ? (currentIndex - 1) * 12 + firstYearMonthCount : 0;
     
+    NSInteger successCount = 0;
     for (int index = 0; index<arrayTotalForMonth.count; index++) {
         EKEvent *newEvent=[EKEvent eventWithEventStore:eventStore];
         
@@ -326,7 +363,7 @@
             newEvent.title=[[NSString alloc]initWithFormat:@"%@【%@】%@%@,%@%@,%@%@【%@%ld/%ld%@】",t1,loanName,t3,aTotal,t4,principalForMonth,t5,interestForMonth,t6,(long)currentYearMonthStartIndex+index+1,(long)totalCount,t7];
         }
         
-        newEvent.startDate = [firstAlertDate dateByAddingMonths:index - 1];
+        newEvent.startDate = [firstAlertDate dateByAddingMonths:index];
         newEvent.endDate = newEvent.startDate;
         newEvent.allDay = YES;
         
@@ -366,25 +403,16 @@
         [newCalender setTitle:NSLocalizedString(@"还款提醒",@"")];
         [newEvent setCalendar:newCalender];
         
-        [eventStore saveEvent:newEvent span:EKSpanThisEvent error:&saveEventError];
+        NSError *saveEventError;
+        BOOL saveSucceeded = [eventStore saveEvent:newEvent span:EKSpanThisEvent error:&saveEventError];
+        if (saveSucceeded) successCount++;
     }
     
-    if (saveEventError) {
-        NSString *m1=NSLocalizedString(@"您禁用了应用的日历访问，请到“设置”→“隐私”→“日历”中启用。", @"");
-        NSString *m2=NSLocalizedString(@"系统提示:", @"");
-        NSString *message=[[NSString alloc]initWithFormat:@"%@\n%@",m1,m2];
-        
-        NSString *errorMessage=[saveEventError localizedDescription];
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"添加日历出错了",@"") message:[message stringByAppendingString:errorMessage] delegate:self cancelButtonTitle:NSLocalizedString(@"好的，我知道了",@"") otherButtonTitles: nil];
-        [alert show];
-    }
-    else{
+    if (successCount == arrayTotalForMonth.count){
         NSString *message=[[NSString alloc]initWithFormat:NSLocalizedString(@"还贷信息已成功添加到日历!",@"")];
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示",@"") message:[message stringByAppendingString:alertStirng] delegate:self cancelButtonTitle:NSLocalizedString(@"好的",@"") otherButtonTitles:nil];
         [alert show];
     }
-    
-
 }
 
 

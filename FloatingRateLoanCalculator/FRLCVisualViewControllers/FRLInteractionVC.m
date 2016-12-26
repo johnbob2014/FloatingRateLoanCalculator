@@ -12,6 +12,8 @@
 #import "FRLCSettingManager.h"
 #import "FRLResultVC.h"
 
+#import "KxMenu.h"
+
 #define SectionHeaderHeight 20
 
 typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSString *replacementString);
@@ -49,6 +51,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     // Do any additional setup after loading the view.
     
     self.title = NSLocalizedString(@"浮动利率贷款计算器",@"");
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showMenu:)];
     
     yearCountArray = @[NSLocalizedString(@"1年",@""),
                                 NSLocalizedString(@"2年",@""),
@@ -99,6 +103,33 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     [self initLoanUI];
     
     [self updateIRateForYearSection];
+    
+}
+
+- (void)showMenu:(UIBarButtonItem *)sender{
+    [KxMenu showMenuInView:self.view
+                  fromRect:self.view.frame
+                 menuItems:@[
+                             [KxMenuItem menuItem:@"查询历史"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(historyAction)],
+                             [KxMenuItem menuItem:@"公积金利率"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(historyAction)],
+                             [KxMenuItem menuItem:@"购买提醒功能"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(historyAction)],
+                             [KxMenuItem menuItem:@"给个好评"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(historyAction)]
+                             ]];
+}
+
+- (void)historyAction{
     
 }
 

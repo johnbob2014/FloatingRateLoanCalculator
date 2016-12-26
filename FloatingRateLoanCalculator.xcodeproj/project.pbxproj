@@ -31,6 +31,10 @@
 		4B67EA1F1E0372AD00BAD828 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67EA1B1E0372AD00BAD828 /* NSString+FontAwesome.m */; };
 		4B67EA201E0372AD00BAD828 /* UIButton+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67EA1D1E0372AD00BAD828 /* UIButton+Assistant.m */; };
 		4B67EA251E037BDE00BAD828 /* FloatingRateLoan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B67EA241E037BDE00BAD828 /* FloatingRateLoan.m */; };
+		4B75DA4C1E10FEA3009AB800 /* NSFileManager+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75DA481E10FEA3009AB800 /* NSFileManager+Assistant.m */; };
+		4B75DA4D1E10FEA3009AB800 /* NSURL+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75DA4B1E10FEA3009AB800 /* NSURL+Assistant.m */; };
+		4B75DA511E1103A0009AB800 /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75DA501E1103A0009AB800 /* KxMenu.m */; };
+		4B75DA541E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75DA531E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m */; };
 		4BDA2EB41E028E8500939360 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2EB31E028E8500939360 /* main.m */; };
 		4BDA2EB71E028E8500939360 /* FRLCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2EB61E028E8500939360 /* FRLCAppDelegate.m */; };
 		4BDA2EC01E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2EBE1E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld */; };
@@ -90,6 +94,14 @@
 		4B67EA1D1E0372AD00BAD828 /* UIButton+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Assistant.m"; sourceTree = "<group>"; };
 		4B67EA231E037BDE00BAD828 /* FloatingRateLoan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FloatingRateLoan.h; path = FRLCModels/FloatingRateLoan.h; sourceTree = "<group>"; };
 		4B67EA241E037BDE00BAD828 /* FloatingRateLoan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FloatingRateLoan.m; path = FRLCModels/FloatingRateLoan.m; sourceTree = "<group>"; };
+		4B75DA471E10FEA3009AB800 /* NSFileManager+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Assistant.h"; sourceTree = "<group>"; };
+		4B75DA481E10FEA3009AB800 /* NSFileManager+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Assistant.m"; sourceTree = "<group>"; };
+		4B75DA4A1E10FEA3009AB800 /* NSURL+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Assistant.h"; sourceTree = "<group>"; };
+		4B75DA4B1E10FEA3009AB800 /* NSURL+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Assistant.m"; sourceTree = "<group>"; };
+		4B75DA4F1E1103A0009AB800 /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		4B75DA501E1103A0009AB800 /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
+		4B75DA521E110BB4009AB800 /* HousingProvidentFundLoanRateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HousingProvidentFundLoanRateVC.h; path = FRLCVisualViewControllers/HousingProvidentFundLoanRateVC.h; sourceTree = "<group>"; };
+		4B75DA531E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HousingProvidentFundLoanRateVC.m; path = FRLCVisualViewControllers/HousingProvidentFundLoanRateVC.m; sourceTree = "<group>"; };
 		4BDA2EAF1E028E8500939360 /* FloatingRateLoanCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingRateLoanCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDA2EB31E028E8500939360 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BDA2EB51E028E8500939360 /* FRLCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FRLCAppDelegate.h; sourceTree = "<group>"; };
@@ -149,6 +161,7 @@
 		4B4A3EC91E0A138E008093AE /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				4B75DA4E1E1103A0009AB800 /* KxMenu */,
 				4B4A3ECA1E0A13D7008093AE /* GCDetailTableViewCell */,
 			);
 			name = GeneralClass;
@@ -243,8 +256,37 @@
 				4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */,
 				4B4A3ECE1E0A1E2D008093AE /* FRLResultVC.h */,
 				4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */,
+				4B75DA521E110BB4009AB800 /* HousingProvidentFundLoanRateVC.h */,
+				4B75DA531E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m */,
 			);
 			name = FRLCVisualViewControllers;
+			sourceTree = "<group>";
+		};
+		4B75DA461E10FEA3009AB800 /* NSFileManager+Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				4B75DA471E10FEA3009AB800 /* NSFileManager+Assistant.h */,
+				4B75DA481E10FEA3009AB800 /* NSFileManager+Assistant.m */,
+			);
+			path = "NSFileManager+Assistant";
+			sourceTree = "<group>";
+		};
+		4B75DA491E10FEA3009AB800 /* NSURL+Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				4B75DA4A1E10FEA3009AB800 /* NSURL+Assistant.h */,
+				4B75DA4B1E10FEA3009AB800 /* NSURL+Assistant.m */,
+			);
+			path = "NSURL+Assistant";
+			sourceTree = "<group>";
+		};
+		4B75DA4E1E1103A0009AB800 /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4B75DA4F1E1103A0009AB800 /* KxMenu.h */,
+				4B75DA501E1103A0009AB800 /* KxMenu.m */,
+			);
+			path = KxMenu;
 			sourceTree = "<group>";
 		};
 		4BDA2EA61E028E8500939360 = {
@@ -296,6 +338,8 @@
 		4BDA2ED01E0297DD00939360 /* GeneralCategory */ = {
 			isa = PBXGroup;
 			children = (
+				4B75DA461E10FEA3009AB800 /* NSFileManager+Assistant */,
+				4B75DA491E10FEA3009AB800 /* NSURL+Assistant */,
 				4B4EE4011E0CD1B400828FCA /* NSDate+Assistant */,
 				4B0BFBA61E0BD45F003BE68F /* UIFont+Assistant */,
 				4B0BFBA21E0BCD30003BE68F /* UIAlertController+Assistant */,
@@ -462,8 +506,10 @@
 				4B4A3EEE1E0A24FC008093AE /* ChameleonConstants.m in Sources */,
 				4B4A3EF21E0A24FC008093AE /* UIColor+Chameleon.m in Sources */,
 				4B4A3EF01E0A24FC008093AE /* UIAppearance+Swift.m in Sources */,
+				4B75DA511E1103A0009AB800 /* KxMenu.m in Sources */,
 				4BDA2ED41E02982700939360 /* UIView+AutoLayout.m in Sources */,
 				4B4A3EF31E0A24FC008093AE /* UIColor+ChameleonPrivate.m in Sources */,
+				4B75DA4C1E10FEA3009AB800 /* NSFileManager+Assistant.m in Sources */,
 				4BDA2EB71E028E8500939360 /* FRLCAppDelegate.m in Sources */,
 				4B0CDDC71E0BA95A00BBC980 /* UILabel+Assistant.m in Sources */,
 				4B4EE4041E0CD1B400828FCA /* NSDate+Assistant.m in Sources */,
@@ -481,6 +527,8 @@
 				4BDA2EC01E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld in Sources */,
 				4B4A3EF61E0A24FC008093AE /* UINavigationController+Chameleon.m in Sources */,
 				4B67EA251E037BDE00BAD828 /* FloatingRateLoan.m in Sources */,
+				4B75DA4D1E10FEA3009AB800 /* NSURL+Assistant.m in Sources */,
+				4B75DA541E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m in Sources */,
 				4B4A3EEF1E0A24FC008093AE /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
