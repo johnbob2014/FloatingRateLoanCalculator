@@ -11,9 +11,12 @@
 #import <RETableViewManager.h>
 #import "FRLCSettingManager.h"
 #import "FRLResultVC.h"
+#import "HousingProvidentFundLoanRateVC.h"
+#import "InAppPurchaseProductListVC.h"
 
 #import "KxMenu.h"
 
+#define kLastFRLData @"kLastFRLData"
 #define SectionHeaderHeight 20
 
 typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSString *replacementString);
@@ -97,7 +100,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
         self.currentFRL.nYearCount = 20;
         NSDateFormatter *dateFormatter = [NSDateFormatter new];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        self.currentFRL.firstRepayDate = [dateFormatter dateFromString:@"2015-05-20"];
+        self.currentFRL.firstRepayDate = [dateFormatter dateFromString:@"2015-05-01"];
     }
     
     [self initLoanUI];
@@ -110,26 +113,45 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     [KxMenu showMenuInView:self.view
                   fromRect:self.view.frame
                  menuItems:@[
-                             [KxMenuItem menuItem:@"查询历史"
+                             [KxMenuItem menuItem:@"上次查询"
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(historyAction)],
                              [KxMenuItem menuItem:@"公积金利率"
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
-                                           action:@selector(historyAction)],
-                             [KxMenuItem menuItem:@"购买提醒功能"
+                                           action:@selector(hpfAction)],
+                             [KxMenuItem menuItem:@"购买和恢复"
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
-                                           action:@selector(historyAction)],
+                                           action:@selector(inAppAction)],
                              [KxMenuItem menuItem:@"给个好评"
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
-                                           action:@selector(historyAction)]
+                                           action:@selector(praiseAction)]
                              ]];
 }
 
 - (void)historyAction{
+    FloatingRateLoan *frl = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:kLastFRLData]];
+    
+    if (frl){
+        FRLResultVC *vc = [FRLResultVC new];
+        vc.currentFRL = frl;
+        vc.edgesForExtendedLayout = UIRectEdgeNone;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (void)hpfAction{
+    [self.navigationController pushViewController:[HousingProvidentFundLoanRateVC new] animated:YES];
+}
+
+- (void)inAppAction{
+    [self.navigationController pushViewController:[InAppPurchaseProductListVC new] animated:YES];
+}
+
+- (void)praiseAction{
     
 }
 
@@ -236,6 +258,10 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     
     self.currentFRL.iRateForYearArray = ma;
     
+    NSData *frlData = [NSKeyedArchiver archivedDataWithRootObject:self.currentFRL];
+    [[NSUserDefaults standardUserDefaults] setObject:frlData forKey:kLastFRLData];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     FRLResultVC *resultVC = [FRLResultVC new];
     resultVC.currentFRL = self.currentFRL;
     resultVC.edgesForExtendedLayout = UIRectEdgeNone;
@@ -278,7 +304,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
         if (creditorTypeSegItem.value == LoanCreditorTypeHousingProvidentFund){
             NSDateFormatter *dateFormatter = [NSDateFormatter new];
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-            NSDate *aDate = [dateFormatter dateFromString:[NSString stringWithFormat:@"%d-01-01",currentYear]];
+            NSDate *aDate = [dateFormatter dateFromString:[NSString stringWithFormat:@"%ld-01-01",(long)currentYear]];
             
             if (yearIndex == 0) aDate = self.currentFRL.firstRepayDate;
             
@@ -287,7 +313,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
             loanRate = [customRateItem.value floatValue];
         }
         
-        RETextItem *iRateItem=[RETextItem itemWithTitle:[[NSString alloc]initWithFormat:@"%d年",currentYear]
+        RETextItem *iRateItem=[RETextItem itemWithTitle:[[NSString alloc]initWithFormat:@"%ld年",(long)currentYear]
                                                       value:[[NSString alloc]initWithFormat:@"%.2f",loanRate]
                                                 placeholder:NSLocalizedString(@"本年利率",@"")];
         iRateItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];

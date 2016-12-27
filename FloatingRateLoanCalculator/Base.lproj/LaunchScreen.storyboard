@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,14 +16,72 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Floating Rate Loan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiV-ww-mo0">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="QA4-yN-0vQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="STYuanti-SC-Bold" family="Yuanti SC" pointSize="20"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professional Calculator" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gF9-5Z-ocT">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="s4P-Vv-VXs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="STYuanti-SC-Bold" family="Yuanti SC" pointSize="20"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浮动利率贷款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSF-Zt-9Qq">
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <fontDescription key="fontDescription" name="STYuanti-SC-Bold" family="Yuanti SC" pointSize="40"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="2" height="3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专业计算器" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pl4-jv-1Hl">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7bS-hE-fvJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="STYuanti-SC-Bold" family="Yuanti SC" pointSize="40"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="2" height="3"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sjfj4_540" translatesAutoresizingMaskIntoConstraints="NO" id="xqT-Zq-vLA"/>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pl4-jv-1Hl" firstAttribute="top" secondItem="YSF-Zt-9Qq" secondAttribute="bottom" constant="28" id="0Pc-ns-Q48"/>
+                            <constraint firstItem="xqT-Zq-vLA" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="4qD-HN-d6G"/>
+                            <constraint firstItem="YSF-Zt-9Qq" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="165" id="7Zk-lF-TXw"/>
+                            <constraint firstItem="gF9-5Z-ocT" firstAttribute="top" secondItem="BiV-ww-mo0" secondAttribute="bottom" constant="22" id="7kq-pH-XnG"/>
+                            <constraint firstItem="BiV-ww-mo0" firstAttribute="top" secondItem="Pl4-jv-1Hl" secondAttribute="bottom" constant="40" id="JeW-fD-35O"/>
+                            <constraint firstItem="Pl4-jv-1Hl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="16" id="NbM-vI-Wi8"/>
+                            <constraint firstAttribute="trailing" secondItem="xqT-Zq-vLA" secondAttribute="trailing" id="Ovs-yB-cYd"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="gF9-5Z-ocT" secondAttribute="bottom" constant="596" id="eEF-re-RCI"/>
+                            <constraint firstItem="xqT-Zq-vLA" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="heP-Eo-9QO"/>
+                            <constraint firstItem="YSF-Zt-9Qq" firstAttribute="centerX" secondItem="Pl4-jv-1Hl" secondAttribute="centerX" id="kp4-mi-nfs"/>
+                            <constraint firstItem="YSF-Zt-9Qq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="66" id="kx5-YW-j5h"/>
+                            <constraint firstItem="BiV-ww-mo0" firstAttribute="centerX" secondItem="gF9-5Z-ocT" secondAttribute="centerX" id="lfb-gb-Hcj"/>
+                            <constraint firstItem="xqT-Zq-vLA" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="nLx-wp-l5J"/>
+                            <constraint firstItem="Pl4-jv-1Hl" firstAttribute="centerX" secondItem="BiV-ww-mo0" secondAttribute="centerX" id="vyi-pt-h5W"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="-157.03125" y="287.6953125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sjfj4_540" width="270" height="480"/>
+    </resources>
 </document>

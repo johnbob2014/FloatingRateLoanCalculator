@@ -10,7 +10,8 @@
 		22CFF4F10803949CD7E15EFB /* libPods-FloatingRateLoanCalculator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */; };
 		4B0BFBA51E0BCD30003BE68F /* UIAlertController+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */; };
 		4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */; };
-		4B0CDDC71E0BA95A00BBC980 /* UILabel+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0CDDC61E0BA95A00BBC980 /* UILabel+Assistant.m */; };
+		4B0C8C011E1245B500ABD187 /* InAppPurchaseProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */; };
+		4B0C8C041E12497C00ABD187 /* InAppPurchaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8C031E12497C00ABD187 /* InAppPurchaseVC.m */; };
 		4B0E482E1E0908DE0049ED74 /* FRLCSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E482D1E0908DE0049ED74 /* FRLCSettingManager.m */; };
 		4B4A3ECD1E0A1419008093AE /* GCDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3ECC1E0A1419008093AE /* GCDetailTableViewCell.m */; };
 		4B4A3ED01E0A1E2D008093AE /* FRLResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */; };
@@ -50,8 +51,10 @@
 		4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Assistant.m"; sourceTree = "<group>"; };
 		4B0BFBA71E0BD45F003BE68F /* UIFont+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Assistant.h"; sourceTree = "<group>"; };
 		4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Assistant.m"; sourceTree = "<group>"; };
-		4B0CDDC51E0BA95A00BBC980 /* UILabel+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Assistant.h"; sourceTree = "<group>"; };
-		4B0CDDC61E0BA95A00BBC980 /* UILabel+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Assistant.m"; sourceTree = "<group>"; };
+		4B0C8BFF1E1245B500ABD187 /* InAppPurchaseProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppPurchaseProductListVC.h; path = FRLCVisualViewControllers/InAppPurchaseProductListVC.h; sourceTree = "<group>"; };
+		4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppPurchaseProductListVC.m; path = FRLCVisualViewControllers/InAppPurchaseProductListVC.m; sourceTree = "<group>"; };
+		4B0C8C021E12497C00ABD187 /* InAppPurchaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseVC.h; sourceTree = "<group>"; };
+		4B0C8C031E12497C00ABD187 /* InAppPurchaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseVC.m; sourceTree = "<group>"; };
 		4B0E482C1E0908DE0049ED74 /* FRLCSettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLCSettingManager.h; path = FRLCModels/FRLCSettingManager.h; sourceTree = "<group>"; };
 		4B0E482D1E0908DE0049ED74 /* FRLCSettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLCSettingManager.m; path = FRLCModels/FRLCSettingManager.m; sourceTree = "<group>"; };
 		4B4A3ECB1E0A1419008093AE /* GCDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDetailTableViewCell.h; path = GCDetailTableViewCell/GCDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -147,15 +150,6 @@
 				4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */,
 			);
 			path = "UIFont+Assistant";
-			sourceTree = "<group>";
-		};
-		4B0CDDC41E0BA95A00BBC980 /* UILabel+Assistant */ = {
-			isa = PBXGroup;
-			children = (
-				4B0CDDC51E0BA95A00BBC980 /* UILabel+Assistant.h */,
-				4B0CDDC61E0BA95A00BBC980 /* UILabel+Assistant.m */,
-			);
-			path = "UILabel+Assistant";
 			sourceTree = "<group>";
 		};
 		4B4A3EC91E0A138E008093AE /* GeneralClass */ = {
@@ -258,6 +252,10 @@
 				4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */,
 				4B75DA521E110BB4009AB800 /* HousingProvidentFundLoanRateVC.h */,
 				4B75DA531E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m */,
+				4B0C8BFF1E1245B500ABD187 /* InAppPurchaseProductListVC.h */,
+				4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */,
+				4B0C8C021E12497C00ABD187 /* InAppPurchaseVC.h */,
+				4B0C8C031E12497C00ABD187 /* InAppPurchaseVC.m */,
 			);
 			name = FRLCVisualViewControllers;
 			sourceTree = "<group>";
@@ -343,7 +341,6 @@
 				4B4EE4011E0CD1B400828FCA /* NSDate+Assistant */,
 				4B0BFBA61E0BD45F003BE68F /* UIFont+Assistant */,
 				4B0BFBA21E0BCD30003BE68F /* UIAlertController+Assistant */,
-				4B0CDDC41E0BA95A00BBC980 /* UILabel+Assistant */,
 				4B4A3ED11E0A24FC008093AE /* Chameleon */,
 				4B67EA181E0372AD00BAD828 /* UIButton+Assistant */,
 				4BDA2ED11E02982700939360 /* UIView+AutoLayout */,
@@ -411,6 +408,7 @@
 				TargetAttributes = {
 					4BDA2EAE1E028E8500939360 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 9R3WHNFTF3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -499,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0C8C011E1245B500ABD187 /* InAppPurchaseProductListVC.m in Sources */,
 				4B0BFBA51E0BCD30003BE68F /* UIAlertController+Assistant.m in Sources */,
 				4B4A3EF11E0A24FC008093AE /* UIButton+Chameleon.m in Sources */,
 				4B4A3EF71E0A24FC008093AE /* UIView+ChameleonPrivate.m in Sources */,
@@ -511,11 +510,11 @@
 				4B4A3EF31E0A24FC008093AE /* UIColor+ChameleonPrivate.m in Sources */,
 				4B75DA4C1E10FEA3009AB800 /* NSFileManager+Assistant.m in Sources */,
 				4BDA2EB71E028E8500939360 /* FRLCAppDelegate.m in Sources */,
-				4B0CDDC71E0BA95A00BBC980 /* UILabel+Assistant.m in Sources */,
 				4B4EE4041E0CD1B400828FCA /* NSDate+Assistant.m in Sources */,
 				4B67EA1F1E0372AD00BAD828 /* NSString+FontAwesome.m in Sources */,
 				4B4A3ED01E0A1E2D008093AE /* FRLResultVC.m in Sources */,
 				4BDA2EB41E028E8500939360 /* main.m in Sources */,
+				4B0C8C041E12497C00ABD187 /* InAppPurchaseVC.m in Sources */,
 				4B4A3EF41E0A24FC008093AE /* UIImage+ChameleonPrivate.m in Sources */,
 				4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */,
 				4B4A3EED1E0A24FC008093AE /* Chameleon_.m in Sources */,
@@ -587,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -629,7 +628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -642,6 +641,7 @@
 			baseConfigurationReference = 4D265014F8CE775193B32C38 /* Pods-FloatingRateLoanCalculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9R3WHNFTF3;
 				GCC_PREFIX_HEADER = FloatingRateLoanCalculator/PrefixHeader.pch;
 				INFOPLIST_FILE = FloatingRateLoanCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -656,6 +656,7 @@
 			baseConfigurationReference = 807F6E97CA8649A8284E551B /* Pods-FloatingRateLoanCalculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9R3WHNFTF3;
 				GCC_PREFIX_HEADER = FloatingRateLoanCalculator/PrefixHeader.pch;
 				INFOPLIST_FILE = FloatingRateLoanCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -85,15 +85,16 @@
 
 - (void)initTopInfoView{
     topInfoView = [UIView newAutoLayoutView];
-    topInfoView.backgroundColor = DEBUGMODE ? [[UIColor randomFlatColor] colorWithAlphaComponent:0.6] : [UIColor flatGreenColor];
+    topInfoView.backgroundColor = DEBUGMODE ? [[UIColor randomFlatColor] colorWithAlphaComponent:0.6] : [UIColor flatGrayColor];
     [self.view addSubview:topInfoView];
     [topInfoView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(10, 10, 0, 10) excludingEdge:ALEdgeBottom];
-    [topInfoView autoSetDimension:ALDimensionHeight toSize:40];
+    [topInfoView autoSetDimension:ALDimensionHeight toSize:60];
     
     infoLabelInTIV = [UILabel newAutoLayoutView];
     infoLabelInTIV.textAlignment = NSTextAlignmentCenter;
     infoLabelInTIV.numberOfLines = 0;
-    [infoLabelInTIV setStyle:UILabelStyleBrownBold];
+    infoLabelInTIV.font = [UIFont bodyFontWithSizeMultiplier:0.8];
+    infoLabelInTIV.textColor = [UIColor flatBrownColor];
     
     [topInfoView addSubview:infoLabelInTIV];
     [infoLabelInTIV autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
@@ -138,7 +139,7 @@
     
     topLeftButton = [UIButton newAutoLayoutView];
     [topLeftButton setTitle:NSLocalizedString(@"上一年", @"") forState:UIControlStateNormal];
-    [topLeftButton setStyle:UIButtonStylePrimary];
+    [topLeftButton setStyle:UIButtonStyleSuccess];
     topLeftButton.tag = 0;
     [topLeftButton addTarget:self action:@selector(previousYearBtnTD:) forControlEvents:UIControlEventTouchDown];
     [buttonContainerView addSubview:topLeftButton];
@@ -148,7 +149,7 @@
     
     topRightButton = [UIButton newAutoLayoutView];
     [topRightButton setTitle:NSLocalizedString(@"下一年", @"") forState:UIControlStateNormal];
-    [topRightButton setStyle:UIButtonStylePrimary];
+    [topRightButton setStyle:UIButtonStyleSuccess];
     topRightButton.tag = 1;
     [topRightButton addTarget:self action:@selector(nextYearBtnTD:) forControlEvents:UIControlEventTouchDown];
     [buttonContainerView addSubview:topRightButton];
@@ -160,7 +161,7 @@
     
     bottomLeftButton = [UIButton newAutoLayoutView];
     [bottomLeftButton setTitle:NSLocalizedString(@"导出", @"") forState:UIControlStateNormal];
-    [bottomLeftButton setStyle:UIButtonStylePrimary];
+    [bottomLeftButton setStyle:UIButtonStyleSuccess];
     [bottomLeftButton addTarget:self action:@selector(exportBtnTD:) forControlEvents:UIControlEventTouchDown];
     [buttonContainerView addSubview:bottomLeftButton];
     [bottomLeftButton autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
@@ -169,7 +170,7 @@
     
     UIButton *bottomRightButton = [UIButton newAutoLayoutView];
     [bottomRightButton setTitle:NSLocalizedString(@"添加提醒", @"") forState:UIControlStateNormal];
-    [bottomRightButton setStyle:UIButtonStylePrimary];
+    [bottomRightButton setStyle:UIButtonStyleSuccess];
     [bottomRightButton addTarget:self action:@selector(addAlertBtnTD:) forControlEvents:UIControlEventTouchDown];
     [buttonContainerView addSubview:bottomRightButton];
     [bottomRightButton autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
@@ -197,7 +198,7 @@
     _currentYear = currentYear;
     
     // 更新数据
-    currentYearDictionary = [resultData objectForKey:[NSString stringWithFormat:@"%d",currentYear]];
+    currentYearDictionary = [resultData objectForKey:[NSString stringWithFormat:@"%ld",(long)currentYear]];
     arrayTotalForMonth = currentYearDictionary[kTotalForMonth];
     arrayPrincipalForMonth = currentYearDictionary[KPrincipalForMonth];
     arrayInterestForMonth = currentYearDictionary[kInterestForMonth];
@@ -207,7 +208,7 @@
     
     [myTableView reloadData];
     
-    self.title = [NSString stringWithFormat:@"%d年",currentYear];
+    self.title = [NSString stringWithFormat:@"%ld年",(long)currentYear];
     
     [self updateTopInfoView];
 }
@@ -433,7 +434,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return RowHeightOfTableView;
+    return ScreenWidth > 375 ? RowHeightOfTableView + 10 : RowHeightOfTableView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

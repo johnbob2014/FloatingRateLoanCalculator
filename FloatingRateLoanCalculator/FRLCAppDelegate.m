@@ -26,6 +26,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.tintColor = [UIColor flatGreenColorDark];
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[FRLInteractionVC new]];
     self.window.rootViewController = nav;

@@ -19,7 +19,7 @@
 #define kAllPayed @"kAllPayed"
 #define kAllPayedPlusRestPrincipal @"kAllPayedPlusRestPrincipal"
 
-#define DEBUGMODE 1
+#define DEBUGMODE 0
 
 #define NOW [NSDate date]
 
@@ -42,7 +42,6 @@
 #import "NSURL+Assistant.h"
 #import "NSDate+Assistant.h"
 #import "UIButton+Assistant.h"
-#import "UILabel+Assistant.h"
 #import "UIAlertController+Assistant.h"
 #import "UIFont+Assistant.h"
 
