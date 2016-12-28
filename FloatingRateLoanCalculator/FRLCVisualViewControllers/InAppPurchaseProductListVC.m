@@ -42,6 +42,7 @@
 - (void)initTableView{
     myTableView = [UITableView newAutoLayoutView];
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    myTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.view addSubview:myTableView];
     [myTableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     
@@ -51,7 +52,7 @@
     
     RETableViewSection *purchaseSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"购买",@"") footerTitle:@""];
     
-    RETableViewItem *productItem1=[RETableViewItem itemWithTitle:[[NSString alloc]initWithFormat:@"📅 %@", NSLocalizedString(@"将还款信息添加到日历", @"")] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+    RETableViewItem *productItem1=[RETableViewItem itemWithTitle:[[NSString alloc]initWithFormat:@"📅 %@", NSLocalizedString(@"还款日历、还款提醒、导出数据", @"")] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
         [item deselectRowAnimated:YES];
         
         [self showPurchaseVC:TransactionTypePurchase productIndexArray:@[@0]];
@@ -84,7 +85,7 @@
         if (succeeded) {
             switch (productIndex) {
                 case 0:
-                    //weakSelf.settingManager.hasPurchasedShareAndBrowse = YES;
+                    weakSelf.settingManager.hasPurchasedRepayAlert = YES;
                     break;
                     
                 default:

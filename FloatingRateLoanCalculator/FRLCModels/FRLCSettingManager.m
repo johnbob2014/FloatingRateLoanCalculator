@@ -6,12 +6,13 @@
 //  Copyright © 2016年 ZhangBaoGuo. All rights reserved.
 //
 
-#define AppID @"1136142337"
+#define AppID @"1190166507"
 
-#define AppWXID @"wxa1b9c5632d24039a"
-#define AppURLString @"https://itunes.apple.com/app/id1136142337"
-#define AppProductIDArray @[@"com.ZhangBaoGuo.AlbumMaps.ShareAndBrowse",@"com.ZhangBaoGuo.AlbumMaps.RecordAndEdit",@"com.ZhangBaoGuo.AlbumMaps.ImportAndExport",@"com.ZhangBaoGuo.AlbumMaps.AllFunctionsSuit"]
-#define AppQRCodeImage @"AlbumMapsAppQRCodeImage.png"
+#define AppWXID @"wx"
+#define AppURLString @"https://itunes.apple.com/app/id1190166507"
+#define AppProductIDArray @[@"com.ZhangBaoGuo.FloatingRateLoanCalculator.RepayAlertAndExportData"]
+#define AppQRCodeImage @"FRLCAppQRCodeImage.png"
+#define AppDebugCode @"2170f9442e52aad52e3c3b1c3b5d6a8a143289797b6b1fdab6e67d0fc6979668"
 
 #import "FRLCSettingManager.h"
 
@@ -184,7 +185,9 @@
 }
 
 - (NSString *)appDebugCode{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"appDebugCode"];
+    NSString *appDebugCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"appDebugCode"];
+    if (appDebugCode) return appDebugCode;
+    else return AppDebugCode;
 }
 
 - (NSString *)appVersion{
@@ -196,7 +199,7 @@
 + (void)updateLoanRateWithCompletionBlock:(void(^)())completionBlock{
     if(DEBUGMODE) NSLog(@"正在更新LoanRate...\n");
     // 更新下载链接
-    NSString *appInfoURLString = @"http://www.7xpt9o.com1.z0.glb.clouddn.com/LoanRate2016.json";
+    NSString *appInfoURLString = @"http://www.7xpt9o.com1.z0.glb.clouddn.com/LoanRate.json";
     
     NSError *readDataError;
     NSData *loanRateData = [NSData dataWithContentsOfURL:[NSURL URLWithString:appInfoURLString] options:NSDataReadingMapped error:&readDataError];
@@ -275,6 +278,16 @@
 
 - (void)setDebugMode:(BOOL)debugMode{
     [[NSUserDefaults standardUserDefaults] setBool:debugMode forKey:@"debugMode"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)hasPurchasedRepayAlert{
+    BOOL hasPurchasedRepayAlert = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasPurchasedRepayAlert"];
+    return hasPurchasedRepayAlert;
+}
+
+- (void)setHasPurchasedRepayAlert:(BOOL)hasPurchasedRepayAlert{
+    [[NSUserDefaults standardUserDefaults] setBool:hasPurchasedRepayAlert forKey:@"hasPurchasedRepayAlert"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

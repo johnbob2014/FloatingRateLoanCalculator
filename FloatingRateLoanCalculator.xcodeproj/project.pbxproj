@@ -8,6 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		22CFF4F10803949CD7E15EFB /* libPods-FloatingRateLoanCalculator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */; };
+		4B0A242C1E13919B00324EB2 /* FRLCAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A242B1E13919B00324EB2 /* FRLCAboutVC.m */; };
+		4B0A24381E13922D00324EB2 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A242F1E13922D00324EB2 /* SVIndefiniteAnimatedView.m */; };
+		4B0A24391E13922D00324EB2 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A24311E13922D00324EB2 /* SVProgressAnimatedView.m */; };
+		4B0A243A1E13922D00324EB2 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B0A24331E13922D00324EB2 /* SVProgressHUD.bundle */; };
+		4B0A243B1E13922D00324EB2 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A24351E13922D00324EB2 /* SVProgressHUD.m */; };
+		4B0A243C1E13922D00324EB2 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A24371E13922D00324EB2 /* SVRadialGradientLayer.m */; };
+		4B0A24421E13927D00324EB2 /* NSData+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A243F1E13927D00324EB2 /* NSData+NSHash.m */; };
+		4B0A24431E13927D00324EB2 /* NSString+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0A24411E13927D00324EB2 /* NSString+NSHash.m */; };
+		4B0A244A1E13952000324EB2 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A24451E13952000324EB2 /* libWeChatSDK.a */; };
+		4B0A244B1E13952000324EB2 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B0A24461E13952000324EB2 /* README.txt */; };
+		4B0A244D1E13981500324EB2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A244C1E13981500324EB2 /* SystemConfiguration.framework */; };
+		4B0A244F1E13984100324EB2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A244E1E13984100324EB2 /* libsqlite3.0.tbd */; };
+		4B0A24511E13984D00324EB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A24501E13984D00324EB2 /* libz.tbd */; };
+		4B0A24551E139C5C00324EB2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A24541E139C5C00324EB2 /* CoreTelephony.framework */; };
+		4B0A24571E139C9D00324EB2 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A24561E139C9D00324EB2 /* libc++.tbd */; };
 		4B0BFBA51E0BCD30003BE68F /* UIAlertController+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */; };
 		4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */; };
 		4B0C8C011E1245B500ABD187 /* InAppPurchaseProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */; };
@@ -43,10 +58,41 @@
 		4BDA2EC51E028E8500939360 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDA2EC31E028E8500939360 /* LaunchScreen.storyboard */; };
 		4BDA2ECE1E02962300939360 /* FRLInteractionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */; };
 		4BDA2ED41E02982700939360 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA2ED31E02982700939360 /* UIView+AutoLayout.m */; };
+		4BF982321E1342D60053C13A /* FRLStorer+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9822F1E1342D60053C13A /* FRLStorer+CoreDataClass.m */; };
+		4BF982331E1342D60053C13A /* FRLStorer+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF982311E1342D60053C13A /* FRLStorer+CoreDataProperties.m */; };
+		4BF982361E134BEA0053C13A /* FRLStorer+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF982351E134BEA0053C13A /* FRLStorer+Assistant.m */; };
+		4BF982391E1354F10053C13A /* FRLHistoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF982381E1354F10053C13A /* FRLHistoryListVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FloatingRateLoanCalculator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B0A242A1E13919B00324EB2 /* FRLCAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLCAboutVC.h; path = FRLCVisualViewControllers/FRLCAboutVC.h; sourceTree = "<group>"; };
+		4B0A242B1E13919B00324EB2 /* FRLCAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLCAboutVC.m; path = FRLCVisualViewControllers/FRLCAboutVC.m; sourceTree = "<group>"; };
+		4B0A242E1E13922D00324EB2 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		4B0A242F1E13922D00324EB2 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		4B0A24301E13922D00324EB2 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		4B0A24311E13922D00324EB2 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		4B0A24321E13922D00324EB2 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		4B0A24331E13922D00324EB2 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		4B0A24341E13922D00324EB2 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		4B0A24351E13922D00324EB2 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		4B0A24361E13922D00324EB2 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		4B0A24371E13922D00324EB2 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		4B0A243E1E13927D00324EB2 /* NSData+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSHash.h"; sourceTree = "<group>"; };
+		4B0A243F1E13927D00324EB2 /* NSData+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSHash.m"; sourceTree = "<group>"; };
+		4B0A24401E13927D00324EB2 /* NSString+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSHash.h"; sourceTree = "<group>"; };
+		4B0A24411E13927D00324EB2 /* NSString+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSHash.m"; sourceTree = "<group>"; };
+		4B0A24451E13952000324EB2 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		4B0A24461E13952000324EB2 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		4B0A24471E13952000324EB2 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		4B0A24481E13952000324EB2 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		4B0A24491E13952000324EB2 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		4B0A244C1E13981500324EB2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4B0A244E1E13984100324EB2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4B0A24501E13984D00324EB2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		4B0A24521E139C1400324EB2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4B0A24541E139C5C00324EB2 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4B0A24561E139C9D00324EB2 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		4B0BFBA31E0BCD30003BE68F /* UIAlertController+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Assistant.h"; sourceTree = "<group>"; };
 		4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Assistant.m"; sourceTree = "<group>"; };
 		4B0BFBA71E0BD45F003BE68F /* UIFont+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Assistant.h"; sourceTree = "<group>"; };
@@ -118,6 +164,14 @@
 		4BDA2ECF1E02972B00939360 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4BDA2ED21E02982700939360 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		4BDA2ED31E02982700939360 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		4BF9822E1E1342D60053C13A /* FRLStorer+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FRLStorer+CoreDataClass.h"; path = "FRLCCoreData/FRLStorer+CoreDataClass.h"; sourceTree = "<group>"; };
+		4BF9822F1E1342D60053C13A /* FRLStorer+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FRLStorer+CoreDataClass.m"; path = "FRLCCoreData/FRLStorer+CoreDataClass.m"; sourceTree = "<group>"; };
+		4BF982301E1342D60053C13A /* FRLStorer+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FRLStorer+CoreDataProperties.h"; path = "FRLCCoreData/FRLStorer+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4BF982311E1342D60053C13A /* FRLStorer+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FRLStorer+CoreDataProperties.m"; path = "FRLCCoreData/FRLStorer+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4BF982341E134BEA0053C13A /* FRLStorer+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FRLStorer+Assistant.h"; path = "FRLCCoreData/FRLStorer+Assistant.h"; sourceTree = "<group>"; };
+		4BF982351E134BEA0053C13A /* FRLStorer+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FRLStorer+Assistant.m"; path = "FRLCCoreData/FRLStorer+Assistant.m"; sourceTree = "<group>"; };
+		4BF982371E1354F10053C13A /* FRLHistoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLHistoryListVC.h; path = FRLCVisualViewControllers/FRLHistoryListVC.h; sourceTree = "<group>"; };
+		4BF982381E1354F10053C13A /* FRLHistoryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLHistoryListVC.m; path = FRLCVisualViewControllers/FRLHistoryListVC.m; sourceTree = "<group>"; };
 		4D265014F8CE775193B32C38 /* Pods-FloatingRateLoanCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingRateLoanCalculator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingRateLoanCalculator/Pods-FloatingRateLoanCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 		807F6E97CA8649A8284E551B /* Pods-FloatingRateLoanCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatingRateLoanCalculator.release.xcconfig"; path = "Pods/Target Support Files/Pods-FloatingRateLoanCalculator/Pods-FloatingRateLoanCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +181,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B0A24571E139C9D00324EB2 /* libc++.tbd in Frameworks */,
+				4B0A24551E139C5C00324EB2 /* CoreTelephony.framework in Frameworks */,
+				4B0A24511E13984D00324EB2 /* libz.tbd in Frameworks */,
+				4B0A244F1E13984100324EB2 /* libsqlite3.0.tbd in Frameworks */,
+				4B0A244D1E13981500324EB2 /* SystemConfiguration.framework in Frameworks */,
+				4B0A244A1E13952000324EB2 /* libWeChatSDK.a in Frameworks */,
 				22CFF4F10803949CD7E15EFB /* libPods-FloatingRateLoanCalculator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +194,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B0A242D1E13922D00324EB2 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4B0A242E1E13922D00324EB2 /* SVIndefiniteAnimatedView.h */,
+				4B0A242F1E13922D00324EB2 /* SVIndefiniteAnimatedView.m */,
+				4B0A24301E13922D00324EB2 /* SVProgressAnimatedView.h */,
+				4B0A24311E13922D00324EB2 /* SVProgressAnimatedView.m */,
+				4B0A24321E13922D00324EB2 /* SVProgressHUD-Prefix.pch */,
+				4B0A24331E13922D00324EB2 /* SVProgressHUD.bundle */,
+				4B0A24341E13922D00324EB2 /* SVProgressHUD.h */,
+				4B0A24351E13922D00324EB2 /* SVProgressHUD.m */,
+				4B0A24361E13922D00324EB2 /* SVRadialGradientLayer.h */,
+				4B0A24371E13922D00324EB2 /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		4B0A243D1E13927D00324EB2 /* NSHash */ = {
+			isa = PBXGroup;
+			children = (
+				4B0A243E1E13927D00324EB2 /* NSData+NSHash.h */,
+				4B0A243F1E13927D00324EB2 /* NSData+NSHash.m */,
+				4B0A24401E13927D00324EB2 /* NSString+NSHash.h */,
+				4B0A24411E13927D00324EB2 /* NSString+NSHash.m */,
+			);
+			path = NSHash;
+			sourceTree = "<group>";
+		};
+		4B0A24441E13952000324EB2 /* WeChatSDK1.7.2 */ = {
+			isa = PBXGroup;
+			children = (
+				4B0A24451E13952000324EB2 /* libWeChatSDK.a */,
+				4B0A24461E13952000324EB2 /* README.txt */,
+				4B0A24471E13952000324EB2 /* WechatAuthSDK.h */,
+				4B0A24481E13952000324EB2 /* WXApi.h */,
+				4B0A24491E13952000324EB2 /* WXApiObject.h */,
+			);
+			path = WeChatSDK1.7.2;
+			sourceTree = "<group>";
+		};
 		4B0BFBA21E0BCD30003BE68F /* UIAlertController+Assistant */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +255,9 @@
 		4B4A3EC91E0A138E008093AE /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				4B0A24441E13952000324EB2 /* WeChatSDK1.7.2 */,
+				4B0A243D1E13927D00324EB2 /* NSHash */,
+				4B0A242D1E13922D00324EB2 /* SVProgressHUD */,
 				4B75DA4E1E1103A0009AB800 /* KxMenu */,
 				4B4A3ECA1E0A13D7008093AE /* GCDetailTableViewCell */,
 			);
@@ -216,6 +319,12 @@
 		4B61F1661E0B632000DBF2BC /* FRLCCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				4BF9822E1E1342D60053C13A /* FRLStorer+CoreDataClass.h */,
+				4BF9822F1E1342D60053C13A /* FRLStorer+CoreDataClass.m */,
+				4BF982301E1342D60053C13A /* FRLStorer+CoreDataProperties.h */,
+				4BF982311E1342D60053C13A /* FRLStorer+CoreDataProperties.m */,
+				4BF982341E134BEA0053C13A /* FRLStorer+Assistant.h */,
+				4BF982351E134BEA0053C13A /* FRLStorer+Assistant.m */,
 			);
 			name = FRLCCoreData;
 			sourceTree = "<group>";
@@ -250,12 +359,16 @@
 				4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */,
 				4B4A3ECE1E0A1E2D008093AE /* FRLResultVC.h */,
 				4B4A3ECF1E0A1E2D008093AE /* FRLResultVC.m */,
+				4BF982371E1354F10053C13A /* FRLHistoryListVC.h */,
+				4BF982381E1354F10053C13A /* FRLHistoryListVC.m */,
 				4B75DA521E110BB4009AB800 /* HousingProvidentFundLoanRateVC.h */,
 				4B75DA531E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m */,
 				4B0C8BFF1E1245B500ABD187 /* InAppPurchaseProductListVC.h */,
 				4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */,
 				4B0C8C021E12497C00ABD187 /* InAppPurchaseVC.h */,
 				4B0C8C031E12497C00ABD187 /* InAppPurchaseVC.m */,
+				4B0A242A1E13919B00324EB2 /* FRLCAboutVC.h */,
+				4B0A242B1E13919B00324EB2 /* FRLCAboutVC.m */,
 			);
 			name = FRLCVisualViewControllers;
 			sourceTree = "<group>";
@@ -369,6 +482,12 @@
 		B663EE33E100893C8AF825C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B0A24561E139C9D00324EB2 /* libc++.tbd */,
+				4B0A24541E139C5C00324EB2 /* CoreTelephony.framework */,
+				4B0A24521E139C1400324EB2 /* Security.framework */,
+				4B0A24501E13984D00324EB2 /* libz.tbd */,
+				4B0A244E1E13984100324EB2 /* libsqlite3.0.tbd */,
+				4B0A244C1E13981500324EB2 /* SystemConfiguration.framework */,
 				28A269C1F6B925E57582C1CC /* libPods-FloatingRateLoanCalculator.a */,
 			);
 			name = Frameworks;
@@ -439,6 +558,8 @@
 				4BDA2EC51E028E8500939360 /* LaunchScreen.storyboard in Resources */,
 				4BDA2EC21E028E8500939360 /* Assets.xcassets in Resources */,
 				4B67EA1E1E0372AD00BAD828 /* FontAwesome.ttf in Resources */,
+				4B0A243A1E13922D00324EB2 /* SVProgressHUD.bundle in Resources */,
+				4B0A244B1E13952000324EB2 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,16 +627,23 @@
 				4B4A3EF21E0A24FC008093AE /* UIColor+Chameleon.m in Sources */,
 				4B4A3EF01E0A24FC008093AE /* UIAppearance+Swift.m in Sources */,
 				4B75DA511E1103A0009AB800 /* KxMenu.m in Sources */,
+				4B0A24421E13927D00324EB2 /* NSData+NSHash.m in Sources */,
 				4BDA2ED41E02982700939360 /* UIView+AutoLayout.m in Sources */,
 				4B4A3EF31E0A24FC008093AE /* UIColor+ChameleonPrivate.m in Sources */,
 				4B75DA4C1E10FEA3009AB800 /* NSFileManager+Assistant.m in Sources */,
 				4BDA2EB71E028E8500939360 /* FRLCAppDelegate.m in Sources */,
+				4B0A242C1E13919B00324EB2 /* FRLCAboutVC.m in Sources */,
 				4B4EE4041E0CD1B400828FCA /* NSDate+Assistant.m in Sources */,
+				4B0A24431E13927D00324EB2 /* NSString+NSHash.m in Sources */,
 				4B67EA1F1E0372AD00BAD828 /* NSString+FontAwesome.m in Sources */,
+				4BF982331E1342D60053C13A /* FRLStorer+CoreDataProperties.m in Sources */,
+				4B0A243B1E13922D00324EB2 /* SVProgressHUD.m in Sources */,
 				4B4A3ED01E0A1E2D008093AE /* FRLResultVC.m in Sources */,
 				4BDA2EB41E028E8500939360 /* main.m in Sources */,
 				4B0C8C041E12497C00ABD187 /* InAppPurchaseVC.m in Sources */,
 				4B4A3EF41E0A24FC008093AE /* UIImage+ChameleonPrivate.m in Sources */,
+				4B0A24381E13922D00324EB2 /* SVIndefiniteAnimatedView.m in Sources */,
+				4BF982391E1354F10053C13A /* FRLHistoryListVC.m in Sources */,
 				4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */,
 				4B4A3EED1E0A24FC008093AE /* Chameleon_.m in Sources */,
 				4B0E482E1E0908DE0049ED74 /* FRLCSettingManager.m in Sources */,
@@ -525,9 +653,13 @@
 				4B67EA201E0372AD00BAD828 /* UIButton+Assistant.m in Sources */,
 				4BDA2EC01E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld in Sources */,
 				4B4A3EF61E0A24FC008093AE /* UINavigationController+Chameleon.m in Sources */,
+				4B0A24391E13922D00324EB2 /* SVProgressAnimatedView.m in Sources */,
+				4BF982361E134BEA0053C13A /* FRLStorer+Assistant.m in Sources */,
 				4B67EA251E037BDE00BAD828 /* FloatingRateLoan.m in Sources */,
 				4B75DA4D1E10FEA3009AB800 /* NSURL+Assistant.m in Sources */,
+				4BF982321E1342D60053C13A /* FRLStorer+CoreDataClass.m in Sources */,
 				4B75DA541E110BB4009AB800 /* HousingProvidentFundLoanRateVC.m in Sources */,
+				4B0A243C1E13922D00324EB2 /* SVRadialGradientLayer.m in Sources */,
 				4B4A3EEF1E0A24FC008093AE /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,6 +778,10 @@
 				INFOPLIST_FILE = FloatingRateLoanCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeChatSDK1.7.2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZhangBaoGuo.FloatingRateLoanCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -661,6 +797,10 @@
 				INFOPLIST_FILE = FloatingRateLoanCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeChatSDK1.7.2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZhangBaoGuo.FloatingRateLoanCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

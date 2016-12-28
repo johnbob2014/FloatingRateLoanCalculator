@@ -99,4 +99,9 @@
  */
 @property (assign,nonatomic) BOOL debugMode;
 
+/**
+ * 是否购买还款提醒
+ */
+@property (assign,nonatomic) BOOL hasPurchasedRepayAlert;
+
 @end

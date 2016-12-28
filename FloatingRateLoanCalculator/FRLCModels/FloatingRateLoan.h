@@ -24,10 +24,10 @@ static NSString * const kAllPayedPlusRestPrincipal;
  */
 @property(copy,nonatomic) NSString *loanName;
 
-/**
- 上次计算时间
- */
-@property(strong,nonatomic) NSDate *lastCalculateDate;
+///**
+// 上次计算时间
+// */
+//@property(strong,nonatomic) NSDate *lastCalculateDate;
 
 /**
  必需，首次还款年月

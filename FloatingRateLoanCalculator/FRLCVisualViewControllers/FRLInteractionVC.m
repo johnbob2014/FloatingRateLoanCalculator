@@ -13,8 +13,11 @@
 #import "FRLResultVC.h"
 #import "HousingProvidentFundLoanRateVC.h"
 #import "InAppPurchaseProductListVC.h"
-
+#import "FRLHistoryListVC.h"
+#import "FRLStorer+CoreDataClass.h"
 #import "KxMenu.h"
+#import "FRLCAboutVC.h"
+#import "WXApi.h"
 
 #define kLastFRLData @"kLastFRLData"
 #define SectionHeaderHeight 20
@@ -110,10 +113,14 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
 }
 
 - (void)showMenu:(UIBarButtonItem *)sender{
+    float edgeLength = 35;
+    CGRect rect = CGRectMake(ScreenWidth - edgeLength - 20, edgeLength, edgeLength, edgeLength);
+    
+    [KxMenu setTintColor:[UIColor flatGreenColorDark]];
     [KxMenu showMenuInView:self.view
-                  fromRect:self.view.frame
+                  fromRect:rect
                  menuItems:@[
-                             [KxMenuItem menuItem:@"上次查询"
+                             [KxMenuItem menuItem:@"查询历史"
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(historyAction)],
@@ -125,14 +132,31 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(inAppAction)],
+                             [KxMenuItem menuItem:@"微信朋友圈"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(wxTimelineAction)],
+                             [KxMenuItem menuItem:@"微信好友"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(wxSessionAction)],
                              [KxMenuItem menuItem:@"给个好评"
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
-                                           action:@selector(praiseAction)]
+                                           action:@selector(praiseAction)],
+                             [KxMenuItem menuItem:@"关于"
+                                            image:[UIImage imageNamed:@"image"]
+                                           target:self
+                                           action:@selector(aboutAction)]
                              ]];
 }
 
 - (void)historyAction{
+    FRLHistoryListVC *vc = [FRLHistoryListVC new];
+    vc.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    /*
     FloatingRateLoan *frl = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:kLastFRLData]];
     
     if (frl){
@@ -141,6 +165,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
         vc.edgesForExtendedLayout = UIRectEdgeNone;
         [self.navigationController pushViewController:vc animated:YES];
     }
+     */
 }
 
 - (void)hpfAction{
@@ -151,8 +176,50 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     [self.navigationController pushViewController:[InAppPurchaseProductListVC new] animated:YES];
 }
 
+- (void)wxTimelineAction{
+    [self wxShare:WXSceneTimeline];
+}
+
+- (void)wxSessionAction{
+    [self wxShare:WXSceneSession];
+}
+
 - (void)praiseAction{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[FRLCSettingManager defaultManager].appURLString]];
+}
+
+- (void)aboutAction{
+    FRLCAboutVC *aboutVC = [FRLCAboutVC new];
+    aboutVC.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
+#pragma mark - Simple WX Share
+
+- (void)wxShare:(enum WXScene)wxScene{
+    if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi]){
+        if(DEBUGMODE) NSLog(@"WeChat uninstalled or not support!");
+        return;
+    }
     
+    WXWebpageObject *webpageObject=[WXWebpageObject new];
+    webpageObject.webpageUrl = [FRLCSettingManager defaultManager].appURLString;
+    
+    WXMediaMessage *mediaMessage=[WXMediaMessage alloc];
+    // WXWebpageObject : 会话显示title、description、thumbData（图标较小)，朋友圈显示title、thumbData（图标较小),两者都发送webpageUrl
+    // WXImageObject   : 会话显示分享的图片，并以thumbData作为缩略图，朋友圈只显示分享的图片,两者都发送imageData
+    mediaMessage.title = NSLocalizedString(@"浮动利率计算器", @"");
+    mediaMessage.description = NSLocalizedString(@"还款金额不对？来试试我吧！每年贷款利率自定义，更有公积金贷款利率自动填充！",@"");
+    mediaMessage.mediaObject = webpageObject;
+    mediaMessage.thumbData = UIImageJPEGRepresentation([UIImage imageNamed:@"37-List 300_300"], 0.5);
+    
+    SendMessageToWXReq *req=[SendMessageToWXReq new];
+    req.message=mediaMessage;
+    req.bText=NO;
+    req.scene= wxScene;
+    
+    BOOL succeeded=[WXApi sendReq:req];
+    if(DEBUGMODE) NSLog(@"SendMessageToWXReq : %@",succeeded? @"Succeeded" : @"Failed");
 }
 
 - (void)initLoanUI{
@@ -168,8 +235,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     loanInfoSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"贷款信息",@"")];
     
     totalTextItem = [RETextItem itemWithTitle:NSLocalizedString(@"贷款总额",@"")
-                                                  value:[[NSString alloc]initWithFormat:@"%.2f",self.currentFRL.aTotal]
-                                            placeholder:NSLocalizedString(@"贷款总额",@"")];
+                                                  value:nil
+                                            placeholder:NSLocalizedString(@"请输入贷款总额",@"")];
     totalTextItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
     
     NSArray *valueArray = DEBUGMODE ? @[NSLocalizedString(@"20年",@"")] :@[NSLocalizedString(@"3年",@"")];
@@ -205,11 +272,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
                                         value:@"4.00"
                                   placeholder:nil];
     customRateItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
-    customRateItem.onEndEditing = ^(RETextItem *item){
+    customRateItem.onChange = ^(RETextItem *item){
         [weakSelf updateIRateForYearSection];
-//        for (RETextItem *rateItem in weakSelf.iRateForYearSection.items) {
-//            rateItem.value = item.value;
-//        }
     };
 
     creditorTypeSegItem = [RESegmentedItem itemWithTitle:NSLocalizedString(@"使用利率",@"")
@@ -258,9 +322,13 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     
     self.currentFRL.iRateForYearArray = ma;
     
+    /*
     NSData *frlData = [NSKeyedArchiver archivedDataWithRootObject:self.currentFRL];
     [[NSUserDefaults standardUserDefaults] setObject:frlData forKey:kLastFRLData];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    */
+    [FRLStorer newFRLStorerWithFloatingRateLoan:self.currentFRL inManagedObjectContext:AppContext];
+    
     
     FRLResultVC *resultVC = [FRLResultVC new];
     resultVC.currentFRL = self.currentFRL;

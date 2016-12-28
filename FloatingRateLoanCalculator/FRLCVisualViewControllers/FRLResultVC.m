@@ -10,6 +10,8 @@
 
 #import "FRLResultVC.h"
 #import "GCDetailTableViewCell.h"
+#import "FRLCSettingManager.h"
+#import "InAppPurchaseProductListVC.h"
 
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
@@ -112,7 +114,7 @@
     [ms appendFormat:@"总还款:%.2f,总本金:%.2f,总利息:%.2f",allPayed,self.currentFRL.aTotal,allPayed - self.currentFRL.aTotal];
 
     if (currentIndex < self.currentFRL.iRateForYearArray.count)
-        [ms appendFormat:@"\n当年利率: %.2f%%",[self.currentFRL.iRateForYearArray[currentIndex] floatValue]];
+        [ms appendFormat:@"\n%ld年,%@,当年利率: %.2f%%",(long)self.currentFRL.nYearCount,self.currentFRL.repayType == 0 ? @"等额本金":@"等额本息",[self.currentFRL.iRateForYearArray[currentIndex] floatValue]];
     
     float aTotalForYear = 0.0 , principalForYear = 0.0 , interestForYear = 0.0;
     for (int i = 0; i < arrayTotalForMonth.count;i++){
@@ -213,7 +215,23 @@
     [self updateTopInfoView];
 }
 
+
+- (BOOL)checkHasPurchased{
+    BOOL hasPurchased = [FRLCSettingManager defaultManager].hasPurchasedRepayAlert;
+    if (hasPurchased) return hasPurchased;
+    
+    UIAlertController *ac = [UIAlertController okCancelAlertControllerWithTitle:@"提示" message:@"尚未购买 还款提醒和导出数据 功能，是否购买？" okActionHandler:^(UIAlertAction *action) {
+        [self.navigationController pushViewController:[InAppPurchaseProductListVC new] animated:YES];
+    }];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+    
+    return hasPurchased;
+}
+
 - (void)exportBtnTD:(UIButton *)button{
+    if (![self checkHasPurchased]) return;
+    
     NSMutableString *ms = [NSMutableString new];
     [ms appendString:infoLabelInTIV.text];
     
@@ -226,7 +244,7 @@
     NSString *dirPath = [[NSURL documentURL].path stringByAppendingPathComponent:@"导出"];
     [NSFileManager directoryExistsAtPath:dirPath autoCreate:YES];
     
-    NSString *exportPath = [dirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d明细.txt",self.currentYear]];
+    NSString *exportPath = [dirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld明细.txt",(long)self.currentYear]];
     
     NSError *exportError;
     BOOL exportSucceeded = [ms writeToFile:exportPath atomically:YES encoding:NSUTF8StringEncoding error:&exportError];
@@ -239,12 +257,14 @@
 }
 
 - (void)addAlertBtnTD:(UIButton *)button{
+    if (![self checkHasPurchased]) return;
+    
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error){
         NSLog(@"允许访问日历：%hhd",granted);
     }];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"添加日历和提醒",@"") message:NSLocalizedString(@"将当年的还贷信息添加到日历中，并设置提醒。",@"") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"添加日历和提醒",@"") message:NSLocalizedString(@"将还款信息添加到日历中，可设置提醒",@"") preferredStyle:UIAlertControllerStyleAlert];
     
 //    NSLocalizedString(@"不，我不需要添加",@"")
 //    NSLocalizedString(@"当天9点提醒",@"")
@@ -294,7 +314,7 @@
                                                     
                                                 }];
     UIAlertAction *ac5 = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消",@"")
-                                                  style:UIAlertActionStyleDefault
+                                                  style:UIAlertActionStyleCancel
                                                 handler:nil];
     [alertController addAction:ac0];
     [alertController addAction:ac1];

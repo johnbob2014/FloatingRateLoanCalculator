@@ -31,7 +31,7 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
 
 - (void)setNYearCount:(NSInteger)nYearCount{
     _nYearCount = nYearCount;
-    self.calculateYearCount = nYearCount;
+    self.calculateYearCount = nYearCount + 1;
 }
 
 - (void)setFirstRepayDate:(NSDate *)firstRepayDate{
@@ -46,6 +46,7 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
 - (void)setFirstRepayMonth:(NSInteger)firstRepayMonth{
     _firstRepayMonth = firstRepayMonth;
     if (firstRepayMonth != 1) self.calculateYearCount = self.nYearCount + 1;
+    else self.calculateYearCount = self.nYearCount;
 }
 
 
@@ -208,6 +209,7 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
     newFRL.firstRepayDate = [aDecoder decodeObjectOfClass:[NSDate class] forKey:@"firstRepayDate"];
     newFRL.iRateForYearArray = [aDecoder decodeObjectOfClass:[NSArray class] forKey:@"iRateForYearArray"];
     newFRL.repayType = [aDecoder decodeIntegerForKey:@"repayType"];
+    newFRL.loanName = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"loanName"];
     return newFRL;
 }
 
@@ -217,6 +219,8 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
     [aCoder encodeObject:self.firstRepayDate forKey:@"firstRepayDate"];
     [aCoder encodeObject:self.iRateForYearArray forKey:@"iRateForYearArray"];
     [aCoder encodeInteger:self.repayType forKey:@"repayType"];
+    
+    if(self.loanName) [aCoder encodeObject:self.loanName forKey:@"loanName"];
 }
 
 @end
