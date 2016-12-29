@@ -23,6 +23,7 @@
 @end
 
 @implementation FRLResultVC{
+    UIDocumentInteractionController *documentInteractionController;
     
     NSString *lastYearKey;
     
@@ -87,7 +88,7 @@
 
 - (void)initTopInfoView{
     topInfoView = [UIView newAutoLayoutView];
-    topInfoView.backgroundColor = DEBUGMODE ? [[UIColor randomFlatColor] colorWithAlphaComponent:0.6] : [UIColor flatGrayColor];
+    topInfoView.backgroundColor = [UIColor flatYellowColor];
     [self.view addSubview:topInfoView];
     [topInfoView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(10, 10, 0, 10) excludingEdge:ALEdgeBottom];
     [topInfoView autoSetDimension:ALDimensionHeight toSize:60];
@@ -235,25 +236,38 @@
     NSMutableString *ms = [NSMutableString new];
     [ms appendString:infoLabelInTIV.text];
     
-    [ms appendString:@"\n当月总额,当月本金,当月利息,已还总额,剩余本金,当月一次性还清实付"];
+    [ms appendString:@"\n\n月份,  期次,  当月总额,  当月本金,  当月利息,  已还总额,  剩余本金,  当月一次性还清实付"];
     
-    for (int i=0;i<arrayTotalForMonth.count;i++){
-        [ms appendFormat:@"\n%.2f,%.2f,%.2f,%.2f,%.2f,%.2f",[arrayTotalForMonth[i] floatValue],[arrayPrincipalForMonth[i] floatValue],[arrayInterestForMonth [i] floatValue],[arrayAllPayed[i] floatValue],[arrayRestPrincipal[i] floatValue],[arrayAllPayedPlusRestPrincipal[i] floatValue]];
+    NSInteger firstYearMonthCount = 12 - self.currentFRL.firstRepayMonth + 1;
+    NSInteger currentYearMonthStartIndex = currentIndex > 0 ? (currentIndex - 1) * 12 + firstYearMonthCount : 0;
+    
+    for (int index = 0;index < arrayTotalForMonth.count;index++){
+        [ms appendFormat:@"\n%02ld月,  %03ld,  %.2f,  %.2f,  %.2f,  %.2f,  %.2f,  %.2f",currentIndex == 0 ? self.currentFRL.firstRepayMonth + index : index + 1,currentYearMonthStartIndex + index + 1,[arrayTotalForMonth[index] floatValue],[arrayPrincipalForMonth[index] floatValue],[arrayInterestForMonth [index] floatValue],[arrayAllPayed[index] floatValue],[arrayRestPrincipal[index] floatValue],[arrayAllPayedPlusRestPrincipal[index] floatValue]];
     }
     
-    NSString *dirPath = [[NSURL documentURL].path stringByAppendingPathComponent:@"导出"];
+    NSString *dirPath = [[NSURL documentURL].path stringByAppendingPathComponent:@"导出的数据"];
     [NSFileManager directoryExistsAtPath:dirPath autoCreate:YES];
     
-    NSString *exportPath = [dirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld明细.txt",(long)self.currentYear]];
+    NSTimeInterval ti = [NOW timeIntervalSinceReferenceDate];
+    NSString *exportPath = [dirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld年明细 %.0f.txt",(long)self.currentYear,ti * 1000]];
     
     NSError *exportError;
     BOOL exportSucceeded = [ms writeToFile:exportPath atomically:YES encoding:NSUTF8StringEncoding error:&exportError];
     
-    NSString *alertMessage = exportSucceeded ? @"导出成功":@"导出失败";
+    UIAlertController *ac;
     
-    UIAlertController *ac = [UIAlertController informationAlertControllerWithTitle:@"提示" message:alertMessage];
+    if (exportSucceeded){
+        ac = [UIAlertController okCancelAlertControllerWithTitle:@"提示" message:@"导出成功,是否打开文件？" okActionHandler:^(UIAlertAction *action) {
+            // 显示打开文件交互窗口
+            documentInteractionController = [UIDocumentInteractionController new];
+            documentInteractionController.URL = [NSURL fileURLWithPath:exportPath];
+            [documentInteractionController presentOptionsMenuFromRect:self.view.frame inView:self.view animated:YES];
+        }];
+    }else{
+        ac = [UIAlertController informationAlertControllerWithTitle:@"提示" message:@"导出失败!"];
+    }
+    
     [self presentViewController:ac animated:YES completion:nil];
-    
 }
 
 - (void)addAlertBtnTD:(UIButton *)button{
@@ -261,7 +275,7 @@
     
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error){
-        NSLog(@"允许访问日历：%hhd",granted);
+        NSLog(@"允许访问日历：%@",granted?@"1":@"0");
     }];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"添加日历和提醒",@"") message:NSLocalizedString(@"将还款信息添加到日历中，可设置提醒",@"") preferredStyle:UIAlertControllerStyleAlert];
@@ -274,13 +288,16 @@
     
     __block UITextField *nameTF;
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.text = [FRLCSettingManager defaultManager].lastLoanName;
         textField.placeholder = NSLocalizedString(@"请输入贷款名称，方便区分",@"");
         nameTF = textField;
     }];
     
     __block UITextField *alertDayTF;
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.text = [FRLCSettingManager defaultManager].lastRepayDay;
         textField.placeholder = NSLocalizedString(@"请输入每月提醒日期，默认为1号提醒",@"");
+        textField.keyboardType = UIKeyboardTypeNumberPad;
         alertDayTF = textField;
     }];
     
@@ -330,6 +347,9 @@
 
 
 - (void)addToCalenderWithAlertTime:(NSInteger)alertTime alertDay:(NSInteger)alertDay loanName:(NSString *)loanName{
+    [FRLCSettingManager defaultManager].lastLoanName = loanName;
+    [FRLCSettingManager defaultManager].lastRepayDay = [NSString stringWithFormat:@"%ld",(long)alertDay];
+    
     EKEventStore *eventStore=[[EKEventStore alloc]init];
     
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
@@ -528,10 +548,10 @@
         
         switch (idx) {
             case 0:
-                obj.text = [NSString stringWithFormat:@"%02d月",currentIndex == 0 ? self.currentFRL.firstRepayMonth + index:index + 1];
+                obj.text = [NSString stringWithFormat:@"%02ld月",currentIndex == 0 ? self.currentFRL.firstRepayMonth + index : index + 1];
                 break;
             case 1:
-                obj.text = [NSString stringWithFormat:@"%03d",currentYearMonthStartIndex + index + 1];
+                obj.text = [NSString stringWithFormat:@"%03ld",currentYearMonthStartIndex + index + 1];
                 break;
             case 2:
                 obj.text = [NSString stringWithFormat:@"%.2f",[[currentYearDictionary objectForKey:kTotalForMonth][index] floatValue]];

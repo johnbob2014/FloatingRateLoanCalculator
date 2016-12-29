@@ -77,6 +77,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     FRLStorer *storer = currentGroupArray[indexPath.row];
     FloatingRateLoan *frl = [NSKeyedUnarchiver unarchiveObjectWithData:storer.archivedData];
     

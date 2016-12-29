@@ -7,12 +7,13 @@
 //
 
 #define AppID @"1190166507"
+#define AppWXID @"wxd8095af0c6b13296"
 
-#define AppWXID @"wx"
-#define AppURLString @"https://itunes.apple.com/app/id1190166507"
-#define AppProductIDArray @[@"com.ZhangBaoGuo.FloatingRateLoanCalculator.RepayAlertAndExportData"]
-#define AppQRCodeImage @"FRLCAppQRCodeImage.png"
-#define AppDebugCode @"2170f9442e52aad52e3c3b1c3b5d6a8a143289797b6b1fdab6e67d0fc6979668"
+//#define AppURLString @"https://itunes.apple.com/app/id1190166507"
+//#define AppProductIDArray @[@"com.ZhangBaoGuo.FloatingRateLoanCalculator.RepayAlertAndExportData"]
+//#define AppQRCodeImage @"FRLCAppQRCodeImage.png"
+//#define AppDebugCode @"2170f9442e52aad52e3c3b1c3b5d6a8a143289797b6b1fdab6e67d0fc6979668"
+
 
 #import "FRLCSettingManager.h"
 
@@ -30,8 +31,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        // 如果没有更新过 或者 距离上次更新时间超过1天，则进行更新
-        if (!self.appInfoLastUpdateDate || [[NSDate date] timeIntervalSinceDate:self.appInfoLastUpdateDate] > 24 * 60 * 60){
+        // 如果没有更新过 或者 距离上次更新时间超过30天，则进行更新，在后台进行
+        if (!self.appInfoLastUpdateDate || [[NSDate date] timeIntervalSinceDate:self.appInfoLastUpdateDate] > 24 * 60 * 60 * 30){
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [FRLCSettingManager updateAppInfoWithCompletionBlock:nil];
                 [FRLCSettingManager updateLoanRateWithCompletionBlock:nil];
@@ -45,16 +46,24 @@
 + (void)updateAppInfoWithCompletionBlock:(void(^)())completionBlock{
     if(DEBUGMODE) NSLog(@"正在更新AppInfo...\n");
     // 更新下载链接
-    NSString *appInfoURLString = @"http://www.7xpt9o.com1.z0.glb.clouddn.com/AppInfo.json";
+    NSString *appInfoURLString = @"https://oixoepy7l.qnssl.com/AppInfo.json";//www.7xpt9o.com1.z0.glb.clouddn.com
     
     NSError *readDataError;
     NSData *appInfoData = [NSData dataWithContentsOfURL:[NSURL URLWithString:appInfoURLString] options:NSDataReadingMapped error:&readDataError];
+    
     if (!appInfoData){
         if(DEBUGMODE) NSLog(@"从网络获取AppInfo数据出错 : %@",readDataError.localizedDescription);
+        if(DEBUGMODE) NSLog(@"\n从本地获取AppInfo数据...");
+        NSURL *localFileURL = [[NSBundle mainBundle] URLForResource:@"AppInfo" withExtension:@"json"];
+        appInfoData = [NSData dataWithContentsOfURL:localFileURL options:NSDataReadingMapped error:&readDataError];
+    }
+    
+    if (!appInfoData){
+        if(DEBUGMODE) NSLog(@"\n从本地获取AppInfo数据出错 : %@",readDataError.localizedDescription);
         if (completionBlock) completionBlock();
         return;
     }
-    
+
     NSError *parseJSONError;
     NSArray *appInfoDictionaryArray = [NSJSONSerialization JSONObjectWithData:appInfoData options:NSJSONReadingMutableContainers error:&parseJSONError];
     if (!appInfoDictionaryArray){
@@ -161,21 +170,24 @@
 }
 
 - (NSString *)appURLString{
-    NSString *appURLString = [[NSUserDefaults standardUserDefaults] objectForKey:@"appURLString"];
-    if (appURLString) return appURLString;
-    else return AppURLString;
+//    NSString *appURLString = [[NSUserDefaults standardUserDefaults] objectForKey:@"appURLString"];
+//    if (appURLString) return appURLString;
+//    else return AppURLString;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"appURLString"];
 }
 
 - (UIImage *)appQRCodeImage{
     NSData *appQRCodeImageData = [[NSUserDefaults standardUserDefaults] valueForKey:@"appQRCodeImageData"];
-    if (appQRCodeImageData) return [UIImage imageWithData:appQRCodeImageData];
-    else return [UIImage imageNamed:AppQRCodeImage];
+//    if (appQRCodeImageData) return [UIImage imageWithData:appQRCodeImageData];
+//    else return [UIImage imageNamed:AppQRCodeImage];
+    return [UIImage imageWithData:appQRCodeImageData];
 }
 
 - (NSArray<NSString *> *)appProductIDArray{
     NSArray<NSString *> *appProductIDArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"appProductIDArray"];
-    if (appProductIDArray) return appProductIDArray;
-    else return AppProductIDArray;
+//    if (appProductIDArray) return appProductIDArray;
+//    else return AppProductIDArray;
+    return appProductIDArray;
 }
 
 - (NSString *)appWXID{
@@ -185,9 +197,10 @@
 }
 
 - (NSString *)appDebugCode{
-    NSString *appDebugCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"appDebugCode"];
-    if (appDebugCode) return appDebugCode;
-    else return AppDebugCode;
+//    NSString *appDebugCode = [[NSUserDefaults standardUserDefaults] objectForKey:@"appDebugCode"];
+//    if (appDebugCode) return appDebugCode;
+//    else return AppDebugCode;
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"appDebugCode"];
 }
 
 - (NSString *)appVersion{
@@ -199,12 +212,19 @@
 + (void)updateLoanRateWithCompletionBlock:(void(^)())completionBlock{
     if(DEBUGMODE) NSLog(@"正在更新LoanRate...\n");
     // 更新下载链接
-    NSString *appInfoURLString = @"http://www.7xpt9o.com1.z0.glb.clouddn.com/LoanRate.json";
+    NSString *appInfoURLString = @"https://oixoepy7l.qnssl.com/LoanRate.json";
     
     NSError *readDataError;
     NSData *loanRateData = [NSData dataWithContentsOfURL:[NSURL URLWithString:appInfoURLString] options:NSDataReadingMapped error:&readDataError];
     if (!loanRateData){
         if(DEBUGMODE) NSLog(@"从网络获取LoanRate数据出错 : %@",readDataError.localizedDescription);
+        if(DEBUGMODE) NSLog(@"\n从本地获取LoanRate数据...");
+        NSURL *localFileURL = [[NSBundle mainBundle] URLForResource:@"LoanRate" withExtension:@"json"];
+        loanRateData = [NSData dataWithContentsOfURL:localFileURL options:NSDataReadingMapped error:&readDataError];
+    }
+    
+    if (!loanRateData){
+        if(DEBUGMODE) NSLog(@"\n从本地获取LoanRate数据出错 : %@",readDataError.localizedDescription);
         if (completionBlock) completionBlock();
         return;
     }
@@ -288,6 +308,37 @@
 
 - (void)setHasPurchasedRepayAlert:(BOOL)hasPurchasedRepayAlert{
     [[NSUserDefaults standardUserDefaults] setBool:hasPurchasedRepayAlert forKey:@"hasPurchasedRepayAlert"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)lastLoanName{
+    NSString *placemark = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastLoanName"];
+    return placemark;
+}
+
+- (void)setLasttPlacemark:(NSString *)lastLoanName{
+    [[NSUserDefaults standardUserDefaults] setValue:lastLoanName forKey:@"lastLoanName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)lastRepayDay{
+    NSString *placemark = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastRepayDay"];
+    return placemark;
+}
+
+- (void)setLastRepayDay:(NSString *)lastRepayDay{
+    [[NSUserDefaults standardUserDefaults] setValue:lastRepayDay forKey:@"lastRepayDay"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (float)lastCustomRate{
+    float rate = [[NSUserDefaults standardUserDefaults] floatForKey:@"lastCustomRate"];
+    if (rate == 0.0) rate = 4.25;
+    return rate;
+}
+
+- (void)setLastCustomRate:(float)lastCustomRate{
+    [[NSUserDefaults standardUserDefaults] setFloat:lastCustomRate forKey:@"lastCustomRate"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

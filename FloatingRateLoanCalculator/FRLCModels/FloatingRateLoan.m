@@ -64,13 +64,13 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
     
     // 计算每个还款年度的月数、剩余还款月数
     // 当前年度的月数
-    int monthCountForCurrentYear = 12;
+    NSInteger monthCountForCurrentYear = 12;
     // 剩余期次
     NSUInteger nLeftMonthCount = self.nYearCount * 12;
     
     NSDateComponents *dateComponents = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self.firstRepayDate];
-    int monthCountForFirstYear = 12 - dateComponents.month + 1;
-    int monthCountForLastYear = 12 - monthCountForFirstYear;
+    NSInteger monthCountForFirstYear = 12 - dateComponents.month + 1;
+    NSInteger monthCountForLastYear = 12 - monthCountForFirstYear;
     
     //首年的月数
     if (yearIndex == 0) {
@@ -179,22 +179,22 @@ static NSString * const kAllPayedPlusRestPrincipal=@"kAllPayedPlusRestPrincipal"
     
     NSDateComponents *dateComponents = [[NSCalendar autoupdatingCurrentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self.firstRepayDate];
     
-    int firstYear = dateComponents.year;
-    int firstMonth = dateComponents.month;
+    NSInteger firstYear = dateComponents.year;
+    NSInteger firstMonth = dateComponents.month;
     
-    int yearCount = self.nYearCount;
+    NSInteger yearCount = self.nYearCount;
     if (firstMonth != 1) yearCount += 1;
     
     NSMutableDictionary *lastDic;
     
-    for (int yearIndex = 0; yearIndex < yearCount; yearIndex++) {
+    for (NSInteger yearIndex = 0; yearIndex < yearCount; yearIndex++) {
         
         if (yearIndex > 0)
             lastDic = [self calculateDataForYear:yearIndex previousDictionary:lastDic];
         else
             lastDic = [self calculateDataForYear:yearIndex previousDictionary:nil];
         
-        if (lastDic) [detailMD setObject:lastDic forKey:[NSString stringWithFormat:@"%d",firstYear + yearIndex]];
+        if (lastDic) [detailMD setObject:lastDic forKey:[NSString stringWithFormat:@"%ld",firstYear + yearIndex]];
     }
     
     return detailMD;

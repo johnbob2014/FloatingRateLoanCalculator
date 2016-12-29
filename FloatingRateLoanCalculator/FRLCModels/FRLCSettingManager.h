@@ -10,6 +10,8 @@
 #define kRateLessOrEqual5Years @"RateLessOrEqual5Years"
 #define kRateMoreThan5Years @"RateMoreThan5Years"
 
+#define DEBUGMODE [FRLCSettingManager defaultManager].debugMode
+
 #import <Foundation/Foundation.h>
 
 @interface FRLCSettingManager : NSObject
@@ -27,6 +29,13 @@
  *  @param completionBlock 更新完成后调用的块
  */
 + (void)updateAppInfoWithCompletionBlock:(void(^)())completionBlock;
+
+/**
+ *  从网络更新LoanRate信息，完成后调用指定块
+ *
+ *  @param completionBlock 更新完成后调用的块
+ */
++ (void)updateLoanRateWithCompletionBlock:(void(^)())completionBlock;
 
 #pragma mark - AppInfo
 
@@ -103,5 +112,20 @@
  * 是否购买还款提醒
  */
 @property (assign,nonatomic) BOOL hasPurchasedRepayAlert;
+
+/**
+ * 最后一次输入的 贷款名称
+ */
+@property (strong,nonatomic) NSString *lastLoanName;
+
+/**
+ * 最后一次输入的 还款提醒日
+ */
+@property (strong,nonatomic) NSString *lastRepayDay;
+
+/**
+ * 最后一次输入的 自定义利率
+ */
+@property (assign,nonatomic) float lastCustomRate;
 
 @end

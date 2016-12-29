@@ -209,7 +209,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     // WXWebpageObject : 会话显示title、description、thumbData（图标较小)，朋友圈显示title、thumbData（图标较小),两者都发送webpageUrl
     // WXImageObject   : 会话显示分享的图片，并以thumbData作为缩略图，朋友圈只显示分享的图片,两者都发送imageData
     mediaMessage.title = NSLocalizedString(@"浮动利率计算器", @"");
-    mediaMessage.description = NSLocalizedString(@"还款金额不对？来试试我吧！每年贷款利率自定义，更有公积金贷款利率自动填充！",@"");
+    mediaMessage.description = NSLocalizedString(@"还款金额不对？来试试更专业的计算器吧！每年贷款利率自定义，更有公积金贷款利率自动填充！",@"");
     mediaMessage.mediaObject = webpageObject;
     mediaMessage.thumbData = UIImageJPEGRepresentation([UIImage imageNamed:@"37-List 300_300"], 0.5);
     
@@ -238,6 +238,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
                                                   value:nil
                                             placeholder:NSLocalizedString(@"请输入贷款总额",@"")];
     totalTextItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
+    totalTextItem.keyboardType = UIKeyboardTypeDecimalPad;
     
     NSArray *valueArray = DEBUGMODE ? @[NSLocalizedString(@"20年",@"")] :@[NSLocalizedString(@"3年",@"")];
     yearCountPickerItem = [REPickerItem itemWithTitle:@"贷款年限"
@@ -269,12 +270,18 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
                                             }];
     
     customRateItem = [RETextItem itemWithTitle:NSLocalizedString(@"自定利率",@"")
-                                        value:@"4.00"
+                                         value:[NSString stringWithFormat:@"%.2f",[FRLCSettingManager defaultManager].lastCustomRate]
                                   placeholder:nil];
     customRateItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
-    customRateItem.onChange = ^(RETextItem *item){
+    customRateItem.onEndEditing = ^(RETextItem *item){
+        [FRLCSettingManager defaultManager].lastCustomRate = [item.value floatValue];
         [weakSelf updateIRateForYearSection];
     };
+    customRateItem.onReturn = ^(RETextItem *item){
+        [FRLCSettingManager defaultManager].lastCustomRate = [item.value floatValue];
+        [weakSelf updateIRateForYearSection];
+    };
+    customRateItem.keyboardType = UIKeyboardTypeDecimalPad;
 
     creditorTypeSegItem = [RESegmentedItem itemWithTitle:NSLocalizedString(@"使用利率",@"")
                              segmentedControlTitles:@[NSLocalizedString(@"公积金",@""),NSLocalizedString(@"自定义",@"")]
@@ -385,7 +392,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
                                                       value:[[NSString alloc]initWithFormat:@"%.2f",loanRate]
                                                 placeholder:NSLocalizedString(@"本年利率",@"")];
         iRateItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
-        //iRateItem.textAlignment = NSTextAlignmentRight;
+        iRateItem.keyboardType = UIKeyboardTypeDecimalPad;
         [iRateForYearItemMA addObject:iRateItem];
     }
     

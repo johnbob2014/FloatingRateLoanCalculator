@@ -25,12 +25,12 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxa1b9c5632d24039a</string>
+				<string>wxd8095af0c6b13296</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>weixin</string>
@@ -38,11 +38,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>需要访问日历，用于添加贷款日历和提醒</string>
 	<key>NSPhotoLibraryUsageDescription</key>
