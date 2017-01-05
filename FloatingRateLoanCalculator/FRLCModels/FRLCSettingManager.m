@@ -31,8 +31,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        // 如果没有更新过 或者 距离上次更新时间超过30天，则进行更新，在后台进行
-        if (!self.appInfoLastUpdateDate || [[NSDate date] timeIntervalSinceDate:self.appInfoLastUpdateDate] > 24 * 60 * 60 * 30){
+        // 如果没有更新过 或者 距离上次更新时间超过1天，则进行更新，在后台进行
+        if (!self.appInfoLastUpdateDate || [[NSDate date] timeIntervalSinceDate:self.appInfoLastUpdateDate] > 24 * 60 * 60 ){
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [FRLCSettingManager updateAppInfoWithCompletionBlock:nil];
                 [FRLCSettingManager updateLoanRateWithCompletionBlock:nil];

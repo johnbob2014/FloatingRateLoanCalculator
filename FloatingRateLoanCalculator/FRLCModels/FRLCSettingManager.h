@@ -11,6 +11,7 @@
 #define kRateMoreThan5Years @"RateMoreThan5Years"
 
 #define DEBUGMODE [FRLCSettingManager defaultManager].debugMode
+#define AppSettingManager [FRLCSettingManager defaultManager]
 
 #import <Foundation/Foundation.h>
 

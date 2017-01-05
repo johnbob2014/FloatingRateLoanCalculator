@@ -33,7 +33,7 @@
 }
 
 - (void)initData{
-    self.title = NSLocalizedString(@"购买和恢复", @"");
+    self.title = NSLocalizedString(@"购买和恢复", @"Purchase / Restore");
     self.settingManager = [FRLCSettingManager defaultManager];
 }
 
@@ -50,9 +50,9 @@
     
     //WEAKSELF(weakSelf);
     
-    RETableViewSection *purchaseSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"购买",@"") footerTitle:@""];
+    RETableViewSection *purchaseSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"购买",@"Purchase") footerTitle:@""];
     
-    RETableViewItem *productItem1=[RETableViewItem itemWithTitle:[[NSString alloc]initWithFormat:@"📅 %@", NSLocalizedString(@"还款日历、还款提醒、导出数据", @"")] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+    RETableViewItem *productItem1=[RETableViewItem itemWithTitle:[[NSString alloc]initWithFormat:@"📅 %@", NSLocalizedString(@"还款日历、还款提醒、导出数据", @"Repay Calendar, Repay Alert and Export Data")] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
         [item deselectRowAnimated:YES];
         
         [self showPurchaseVC:TransactionTypePurchase productIndexArray:@[@0]];
@@ -60,8 +60,8 @@
     
     [purchaseSection addItemsFromArray:@[productItem1]];
     
-    RETableViewSection *restoreSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"恢复",@"") footerTitle:@""];
-    RETableViewItem *restoreItem=[RETableViewItem itemWithTitle:[[NSString alloc]initWithFormat:@"%@", NSLocalizedString(@"恢复已购", @"")] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
+    RETableViewSection *restoreSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"恢复",@"Restore") footerTitle:@""];
+    RETableViewItem *restoreItem=[RETableViewItem itemWithTitle:[[NSString alloc]initWithFormat:@"%@", NSLocalizedString(@"恢复已购", @"Restore products purchased before")] accessoryType:UITableViewCellAccessoryNone selectionHandler:^(RETableViewItem *item) {
         [item deselectRowAnimated:YES];
         [self showPurchaseVC:TransactionTypeRestore productIndexArray:@[@1]];
     }];

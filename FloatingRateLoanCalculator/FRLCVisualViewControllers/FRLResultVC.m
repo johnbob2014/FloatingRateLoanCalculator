@@ -60,6 +60,8 @@
     lastYearKey = keyArray.lastObject;
     currentIndex = 0;
     
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
     [self initTopInfoView];
     [self initButtons];
     [self initTableView];
@@ -112,10 +114,19 @@
     NSDictionary *lastYearDic = resultData[lastYearKey];
     NSArray *lastYearAllPayedArray = lastYearDic[kAllPayed];
     float allPayed = [[lastYearAllPayedArray lastObject] floatValue];
-    [ms appendFormat:@"总还款:%.2f,总本金:%.2f,总利息:%.2f",allPayed,self.currentFRL.aTotal,allPayed - self.currentFRL.aTotal];
+    NSString *totalString1 = NSLocalizedString(@"总还款", @"Total");
+    NSString *totalString2 = NSLocalizedString(@"总本金", @"Total Capital");
+    NSString *totalString3 = NSLocalizedString(@"总利息", @"Total Interest");
+    [ms appendFormat:@"%@:%.2f,%@:%.2f,%@:%.2f",totalString1,allPayed,totalString2,self.currentFRL.aTotal,totalString3,allPayed - self.currentFRL.aTotal];
+    
+    //NSString *yearString = ;
 
     if (currentIndex < self.currentFRL.iRateForYearArray.count)
-        [ms appendFormat:@"\n%ld年,%@,当年利率: %.2f%%",(long)self.currentFRL.nYearCount,self.currentFRL.repayType == 0 ? @"等额本金":@"等额本息",[self.currentFRL.iRateForYearArray[currentIndex] floatValue]];
+        [ms appendFormat:@"\n%ld,%@,%@: %.2f%%",
+         (long)self.currentFRL.nYearCount,
+         self.currentFRL.repayType == 0 ? NSLocalizedString(@"等额本金",@"Average C"):NSLocalizedString(@"等额本息",@"Average C&I"),
+         NSLocalizedString(@"当年利率", @"Current rate"),
+         [self.currentFRL.iRateForYearArray[currentIndex] floatValue]];
     
     float aTotalForYear = 0.0 , principalForYear = 0.0 , interestForYear = 0.0;
     for (int i = 0; i < arrayTotalForMonth.count;i++){
@@ -124,7 +135,10 @@
         interestForYear += [arrayInterestForMonth[i] floatValue];
     }
     
-    [ms appendFormat:@"\n当年总额:%.2f,当年本金:%.2f,当年利息:%.2f",aTotalForYear,principalForYear,interestForYear];
+    NSString *currentString1 = NSLocalizedString(@"当年总额", @"Current");
+    NSString *currentString2 = NSLocalizedString(@"当年本金", @"Current Capital");
+    NSString *currentString3 = NSLocalizedString(@"当年利息", @"Current Interest");
+    [ms appendFormat:@"\n%@:%.2f,%@:%.2f,%@:%.2f",currentString1,aTotalForYear,currentString2,principalForYear,currentString3,interestForYear];
     
     infoLabelInTIV.text = ms;
 }
@@ -141,7 +155,7 @@
     [buttonContainerView autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view];
     
     topLeftButton = [UIButton newAutoLayoutView];
-    [topLeftButton setTitle:NSLocalizedString(@"上一年", @"") forState:UIControlStateNormal];
+    [topLeftButton setTitle:NSLocalizedString(@"上一年", @"Previous") forState:UIControlStateNormal];
     [topLeftButton setStyle:UIButtonStyleSuccess];
     topLeftButton.tag = 0;
     [topLeftButton addTarget:self action:@selector(previousYearBtnTD:) forControlEvents:UIControlEventTouchDown];
@@ -151,7 +165,7 @@
     [topLeftButton autoSetDimension:ALDimensionHeight toSize:ShareButtonHeight];
     
     topRightButton = [UIButton newAutoLayoutView];
-    [topRightButton setTitle:NSLocalizedString(@"下一年", @"") forState:UIControlStateNormal];
+    [topRightButton setTitle:NSLocalizedString(@"下一年", @"Next") forState:UIControlStateNormal];
     [topRightButton setStyle:UIButtonStyleSuccess];
     topRightButton.tag = 1;
     [topRightButton addTarget:self action:@selector(nextYearBtnTD:) forControlEvents:UIControlEventTouchDown];
@@ -163,7 +177,7 @@
     [topRightButton autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:topLeftButton withOffset:10];
     
     bottomLeftButton = [UIButton newAutoLayoutView];
-    [bottomLeftButton setTitle:NSLocalizedString(@"导出", @"") forState:UIControlStateNormal];
+    [bottomLeftButton setTitle:NSLocalizedString(@"导出数据", @"Export Data") forState:UIControlStateNormal];
     [bottomLeftButton setStyle:UIButtonStyleSuccess];
     [bottomLeftButton addTarget:self action:@selector(exportBtnTD:) forControlEvents:UIControlEventTouchDown];
     [buttonContainerView addSubview:bottomLeftButton];
@@ -172,7 +186,7 @@
     [bottomLeftButton autoSetDimension:ALDimensionHeight toSize:ShareButtonHeight];
     
     UIButton *bottomRightButton = [UIButton newAutoLayoutView];
-    [bottomRightButton setTitle:NSLocalizedString(@"添加提醒", @"") forState:UIControlStateNormal];
+    [bottomRightButton setTitle:NSLocalizedString(@"添加提醒", @"Add Alert") forState:UIControlStateNormal];
     [bottomRightButton setStyle:UIButtonStyleSuccess];
     [bottomRightButton addTarget:self action:@selector(addAlertBtnTD:) forControlEvents:UIControlEventTouchDown];
     [buttonContainerView addSubview:bottomRightButton];
@@ -221,7 +235,7 @@
     BOOL hasPurchased = [FRLCSettingManager defaultManager].hasPurchasedRepayAlert;
     if (hasPurchased) return hasPurchased;
     
-    UIAlertController *ac = [UIAlertController okCancelAlertControllerWithTitle:@"提示" message:@"尚未购买 还款提醒和导出数据 功能，是否购买？" okActionHandler:^(UIAlertAction *action) {
+    UIAlertController *ac = [UIAlertController okCancelAlertControllerWithTitle:NSLocalizedString(@"提示",@"Note") message:NSLocalizedString(@"尚未购买 还款提醒和导出数据 功能，是否购买？",@"Purchase Add Alert and Export Data function?") okActionHandler:^(UIAlertAction *action) {
         [self.navigationController pushViewController:[InAppPurchaseProductListVC new] animated:YES];
     }];
     
@@ -236,16 +250,16 @@
     NSMutableString *ms = [NSMutableString new];
     [ms appendString:infoLabelInTIV.text];
     
-    [ms appendString:@"\n\n月份,  期次,  当月总额,  当月本金,  当月利息,  已还总额,  剩余本金,  当月一次性还清实付"];
+    [ms appendFormat:@"\n\n%@,  %@,  %@,  %@,  %@,  %@,  %@,  %@",NSLocalizedString(@"月份",@"Month"),NSLocalizedString(@"期次",@"Index"),NSLocalizedString(@"当月总额",@"Current Total"),NSLocalizedString(@"当月本金",@"Current Capital"),NSLocalizedString(@"当月利息",@"Current Interest"),NSLocalizedString(@"已还总额",@"All Payed"),NSLocalizedString(@"剩余本金",@"Rest Capital"),NSLocalizedString(@"当月一次性还清实付",@"Actually Pay This Month")];
     
     NSInteger firstYearMonthCount = 12 - self.currentFRL.firstRepayMonth + 1;
     NSInteger currentYearMonthStartIndex = currentIndex > 0 ? (currentIndex - 1) * 12 + firstYearMonthCount : 0;
     
     for (int index = 0;index < arrayTotalForMonth.count;index++){
-        [ms appendFormat:@"\n%02ld月,  %03ld,  %.2f,  %.2f,  %.2f,  %.2f,  %.2f,  %.2f",currentIndex == 0 ? self.currentFRL.firstRepayMonth + index : index + 1,currentYearMonthStartIndex + index + 1,[arrayTotalForMonth[index] floatValue],[arrayPrincipalForMonth[index] floatValue],[arrayInterestForMonth [index] floatValue],[arrayAllPayed[index] floatValue],[arrayRestPrincipal[index] floatValue],[arrayAllPayedPlusRestPrincipal[index] floatValue]];
+        [ms appendFormat:@"\n%02ld月,  %03ld,  %.2f,  %.2f,  %.2f,  %.2f,  %.2f,  %.2f",(long)(currentIndex == 0 ? self.currentFRL.firstRepayMonth + index : index + 1),currentYearMonthStartIndex + index + 1,[arrayTotalForMonth[index] floatValue],[arrayPrincipalForMonth[index] floatValue],[arrayInterestForMonth [index] floatValue],[arrayAllPayed[index] floatValue],[arrayRestPrincipal[index] floatValue],[arrayAllPayedPlusRestPrincipal[index] floatValue]];
     }
     
-    NSString *dirPath = [[NSURL documentURL].path stringByAppendingPathComponent:@"导出的数据"];
+    NSString *dirPath = [NSURL documentURL].path;
     [NSFileManager directoryExistsAtPath:dirPath autoCreate:YES];
     
     NSTimeInterval ti = [NOW timeIntervalSinceReferenceDate];
@@ -257,14 +271,14 @@
     UIAlertController *ac;
     
     if (exportSucceeded){
-        ac = [UIAlertController okCancelAlertControllerWithTitle:@"提示" message:@"导出成功,是否打开文件？" okActionHandler:^(UIAlertAction *action) {
+        ac = [UIAlertController okCancelAlertControllerWithTitle:NSLocalizedString(@"提示",@"") message:NSLocalizedString(@"导出成功,是否打开文件？",@"Export succeeded. Open file now?") okActionHandler:^(UIAlertAction *action) {
             // 显示打开文件交互窗口
             documentInteractionController = [UIDocumentInteractionController new];
             documentInteractionController.URL = [NSURL fileURLWithPath:exportPath];
             [documentInteractionController presentOptionsMenuFromRect:self.view.frame inView:self.view animated:YES];
         }];
     }else{
-        ac = [UIAlertController informationAlertControllerWithTitle:@"提示" message:@"导出失败!"];
+        ac = [UIAlertController informationAlertControllerWithTitle:NSLocalizedString(@"提示",@"") message:NSLocalizedString(@"导出失败!",@"Export Failed")];
     }
     
     [self presentViewController:ac animated:YES completion:nil];
@@ -278,7 +292,7 @@
         NSLog(@"允许访问日历：%@",granted?@"1":@"0");
     }];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"添加日历和提醒",@"") message:NSLocalizedString(@"将还款信息添加到日历中，可设置提醒",@"") preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"添加日历和提醒",@"Add calendar and alert") message:NSLocalizedString(@"将还款信息添加到日历中，可设置提醒",@"Add repay information to calendar, with alert if you like.") preferredStyle:UIAlertControllerStyleAlert];
     
 //    NSLocalizedString(@"不，我不需要添加",@"")
 //    NSLocalizedString(@"当天9点提醒",@"")
@@ -289,42 +303,42 @@
     __block UITextField *nameTF;
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField){
         textField.text = [FRLCSettingManager defaultManager].lastLoanName;
-        textField.placeholder = NSLocalizedString(@"请输入贷款名称，方便区分",@"");
+        textField.placeholder = NSLocalizedString(@"请输入贷款名称，方便区分",@"Enter the loan name to discriminate");
         nameTF = textField;
     }];
     
     __block UITextField *alertDayTF;
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField){
         textField.text = [FRLCSettingManager defaultManager].lastRepayDay;
-        textField.placeholder = NSLocalizedString(@"请输入每月提醒日期，默认为1号提醒",@"");
+        textField.placeholder = NSLocalizedString(@"请输入每月提醒日期，默认为1号提醒",@"Enter the alert day, 1st as default");
         textField.keyboardType = UIKeyboardTypeNumberPad;
         alertDayTF = textField;
     }];
     
-    UIAlertAction *ac0 = [UIAlertAction actionWithTitle:NSLocalizedString(@"添加，但不用提醒",@"")
+    UIAlertAction *ac0 = [UIAlertAction actionWithTitle:NSLocalizedString(@"添加，但不用提醒",@"Add to calendar without alert")
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action){
                                                          [self addToCalenderWithAlertTime:-1 alertDay:[alertDayTF.text integerValue] loanName:nameTF.text];
                                                      }];
-    UIAlertAction *ac1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"当天9点提醒",@"")
+    UIAlertAction *ac1 = [UIAlertAction actionWithTitle:NSLocalizedString(@"当天9点提醒",@"On day of event(9:00 am)")
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action){
                                                     [self addToCalenderWithAlertTime:0 alertDay:[alertDayTF.text integerValue] loanName:nameTF.text];
                                                     
                                                 }];
-    UIAlertAction *ac2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"1天前9点提醒",@"")
+    UIAlertAction *ac2 = [UIAlertAction actionWithTitle:NSLocalizedString(@"1天前9点提醒",@"1 day before(9:00 am)")
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action){
                                                     [self addToCalenderWithAlertTime:1 alertDay:[alertDayTF.text integerValue] loanName:nameTF.text];
                                                     
                                                 }];
-    UIAlertAction *ac3 = [UIAlertAction actionWithTitle:NSLocalizedString(@"2天前9点提醒",@"")
+    UIAlertAction *ac3 = [UIAlertAction actionWithTitle:NSLocalizedString(@"2天前9点提醒",@"2 days before(9:00 am)")
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action){
                                                     [self addToCalenderWithAlertTime:2 alertDay:[alertDayTF.text integerValue] loanName:nameTF.text];
                                                     
                                                 }];
-    UIAlertAction *ac4 = [UIAlertAction actionWithTitle:NSLocalizedString(@"1周前提醒",@"")
+    UIAlertAction *ac4 = [UIAlertAction actionWithTitle:NSLocalizedString(@"1周前提醒",@"1 week before")
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action){
                                                     [self addToCalenderWithAlertTime:3 alertDay:[alertDayTF.text integerValue] loanName:nameTF.text];
@@ -354,16 +368,16 @@
     
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
         if (!granted){
-            NSString *m1=NSLocalizedString(@"您禁用了应用的日历访问，请到“设置”→“隐私”→“日历”中启用。", @"");
-            NSString *m2=NSLocalizedString(@"系统提示:", @"");
+            NSString *m1=NSLocalizedString(@"您禁用了应用的日历访问，请到“设置”→“隐私”→“日历”中启用。", @"You have denied the access to Calender");
+            NSString *m2=NSLocalizedString(@"提示", @"");
             NSString *message=[[NSString alloc]initWithFormat:@"%@\n%@",m1,m2];
             
-            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"添加日历出错了",@"") message:message delegate:self cancelButtonTitle:NSLocalizedString(@"好的，我知道了",@"") otherButtonTitles: nil];
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"添加日历出错了",@"Add to calendar failed") message:message delegate:self cancelButtonTitle:NSLocalizedString(@"好的，我知道了",@"I know") otherButtonTitles: nil];
             [alert show];
         }
     }];
     
-    NSString *alertStirng=NSLocalizedString(@"未设置提醒",@"");
+    NSString *alertStirng=NSLocalizedString(@"未设置提醒",@"No alert");
     //int count = arrayTotalForMonth.count;
     
     
@@ -386,13 +400,13 @@
         NSString *principalForMonth = [NSString stringWithFormat:@"%.2f",[arrayPrincipalForMonth[index] floatValue]];
         NSString *interestForMonth = [NSString stringWithFormat:@"%.2f",[arrayInterestForMonth[index] floatValue]];
         
-        NSString *t1=NSLocalizedString(@"本月应还", @"");
+        NSString *t1=NSLocalizedString(@"本月应还", @"This month");
         NSString *t2=NSLocalizedString(@"贷款总额", @"");
-        NSString *t3=NSLocalizedString(@"总额", @"");
-        NSString *t4=NSLocalizedString(@"本金", @"");
-        NSString *t5=NSLocalizedString(@"利息", @"");
-        NSString *t6=NSLocalizedString(@"第", @"");
-        NSString *t7=NSLocalizedString(@"期", @"");
+        NSString *t3=NSLocalizedString(@"总额", @"total");
+        NSString *t4=NSLocalizedString(@"本金", @"capital");
+        NSString *t5=NSLocalizedString(@"利息", @"interest");
+        NSString *t6=NSLocalizedString(@"第", @"the");
+        NSString *t7=NSLocalizedString(@"期", @"index");
         
         NSInteger totalCount = self.currentFRL.nYearCount * 12;
         
@@ -415,22 +429,22 @@
             case 0:
                 //当天9点提醒
                 alarmRelativeOffset = 9*60*60;
-                alertStirng=NSLocalizedString(@"提醒时间:当天9点",@"");
+                alertStirng=NSLocalizedString(@"提醒时间:当天9点",@"Alert Time:On day of event(9:00 am)");
                 break;
             case 1:
                 //1天前9点提醒
                 alarmRelativeOffset = -15*60*60;
-                alertStirng=NSLocalizedString(@"提醒时间:1天前9点",@"");
+                alertStirng=NSLocalizedString(@"提醒时间:1天前9点",@"Alert Time:1 day before(9:00 am)");
                 break;
             case 2:
                 //2天前9点提醒
                 alarmRelativeOffset = -(15+24)*60*60;
-                alertStirng=NSLocalizedString(@"提醒时间:2天前9点",@"");
+                alertStirng=NSLocalizedString(@"提醒时间:2天前9点",@"Alert Time:2 days before(9:00 am)");
                 break;
             case 3:
                 //1周前提醒
                 alarmRelativeOffset = -(15+6*24)*60*60;
-                alertStirng=NSLocalizedString(@"提醒时间:1周前",@"");
+                alertStirng=NSLocalizedString(@"提醒时间:1周前",@"Alert Time:1 week before");
                 break;
             
             default:
@@ -441,7 +455,7 @@
         newEvent.alarms = @[alarm];
         
         EKCalendar *newCalender=[eventStore defaultCalendarForNewEvents];
-        [newCalender setTitle:NSLocalizedString(@"还款提醒",@"")];
+        [newCalender setTitle:NSLocalizedString(@"还款提醒",@"Repay Alert")];
         [newEvent setCalendar:newCalender];
         
         NSError *saveEventError;
@@ -450,8 +464,8 @@
     }
     
     if (successCount == arrayTotalForMonth.count){
-        NSString *message=[[NSString alloc]initWithFormat:NSLocalizedString(@"还贷信息已成功添加到日历!",@"")];
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示",@"") message:[message stringByAppendingString:alertStirng] delegate:self cancelButtonTitle:NSLocalizedString(@"好的",@"") otherButtonTitles:nil];
+        NSString *message=[[NSString alloc]initWithFormat:@"%@\n",NSLocalizedString(@"还贷信息已成功添加到日历!",@"Succeeded.")];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示",@"") message:[message stringByAppendingString:alertStirng] delegate:self cancelButtonTitle:NSLocalizedString(@"好的",@"OK") otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -548,10 +562,10 @@
         
         switch (idx) {
             case 0:
-                obj.text = [NSString stringWithFormat:@"%02ld月",currentIndex == 0 ? self.currentFRL.firstRepayMonth + index : index + 1];
+                obj.text = [NSString stringWithFormat:@"%02ld月",(long)(currentIndex == 0 ? self.currentFRL.firstRepayMonth + index : index + 1)];
                 break;
             case 1:
-                obj.text = [NSString stringWithFormat:@"%03ld",currentYearMonthStartIndex + index + 1];
+                obj.text = [NSString stringWithFormat:@"%03ld",(long)(currentYearMonthStartIndex + index + 1)];
                 break;
             case 2:
                 obj.text = [NSString stringWithFormat:@"%.2f",[[currentYearDictionary objectForKey:kTotalForMonth][index] floatValue]];

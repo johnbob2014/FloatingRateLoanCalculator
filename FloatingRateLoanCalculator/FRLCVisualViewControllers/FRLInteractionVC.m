@@ -40,7 +40,7 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     NSMutableArray <RETextItem *> *iRateForYearItemMA;
     FRLCSettingManager *settingManager;
     
-    NSArray *yearCountArray;
+    NSArray <NSString *> *yearCountArray;
     
     RETableViewSection *loanInfoSection;
     
@@ -50,46 +50,50 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     RESegmentedItem *repayTypeSegItem;
     RESegmentedItem *creditorTypeSegItem;
     RETextItem *customRateItem;
+    
+    UIButton *calculateButton;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = NSLocalizedString(@"浮动利率贷款计算器",@"");
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    self.title = NSLocalizedString(@"浮动利率贷款计算器",@"Floating Rate Loan Calculator");
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showMenu:)];
     
-    yearCountArray = @[NSLocalizedString(@"1年",@""),
-                                NSLocalizedString(@"2年",@""),
-                                NSLocalizedString(@"3年",@""),
-                                NSLocalizedString(@"4年",@""),
-                                NSLocalizedString(@"5年",@""),
-                                NSLocalizedString(@"6年",@""),
-                                NSLocalizedString(@"7年",@""),
-                                NSLocalizedString(@"8年",@""),
-                                NSLocalizedString(@"9年",@""),
-                                NSLocalizedString(@"10年",@""),
-                                NSLocalizedString(@"11年",@""),
-                                NSLocalizedString(@"12年",@""),
-                                NSLocalizedString(@"13年",@""),
-                                NSLocalizedString(@"14年",@""),
-                                NSLocalizedString(@"15年",@""),
-                                NSLocalizedString(@"16年",@""),
-                                NSLocalizedString(@"17年",@""),
-                                NSLocalizedString(@"18年",@""),
-                                NSLocalizedString(@"19年",@""),
-                                NSLocalizedString(@"20年",@""),
-                                NSLocalizedString(@"21年",@""),
-                                NSLocalizedString(@"22年",@""),
-                                NSLocalizedString(@"23年",@""),
-                                NSLocalizedString(@"24年",@""),
-                                NSLocalizedString(@"25年",@""),
-                                NSLocalizedString(@"26年",@""),
-                                NSLocalizedString(@"27年",@""),
-                                NSLocalizedString(@"28年",@""),
-                                NSLocalizedString(@"29年",@""),
-                                NSLocalizedString(@"30年",@"")];
+    yearCountArray = @[ NSLocalizedString(@"1年",@"1 year"),
+                        NSLocalizedString(@"2年",@"2 years"),
+                        NSLocalizedString(@"3年",@"3 years"),
+                        NSLocalizedString(@"4年",@"4 years"),
+                        NSLocalizedString(@"5年",@"5 years"),
+                        NSLocalizedString(@"6年",@"6 years"),
+                        NSLocalizedString(@"7年",@"7 years"),
+                        NSLocalizedString(@"8年",@"8 years"),
+                        NSLocalizedString(@"9年",@"9 years"),
+                        NSLocalizedString(@"10年",@"10 years"),
+                        NSLocalizedString(@"11年",@"11 years"),
+                        NSLocalizedString(@"12年",@"12 years"),
+                        NSLocalizedString(@"13年",@"13 years"),
+                        NSLocalizedString(@"14年",@"14 years"),
+                        NSLocalizedString(@"15年",@"15 years"),
+                        NSLocalizedString(@"16年",@"16 years"),
+                        NSLocalizedString(@"17年",@"17 years"),
+                        NSLocalizedString(@"18年",@"18 years"),
+                        NSLocalizedString(@"19年",@"19 years"),
+                        NSLocalizedString(@"20年",@"20 years"),
+                        NSLocalizedString(@"21年",@"21 years"),
+                        NSLocalizedString(@"22年",@"22 years"),
+                        NSLocalizedString(@"23年",@"23 years"),
+                        NSLocalizedString(@"24年",@"24 years"),
+                        NSLocalizedString(@"25年",@"25 years"),
+                        NSLocalizedString(@"26年",@"26 years"),
+                        NSLocalizedString(@"27年",@"27 years"),
+                        NSLocalizedString(@"28年",@"28 years"),
+                        NSLocalizedString(@"29年",@"29 years"),
+                        NSLocalizedString(@"30年",@"30 years")];
 
     
     settingManager = [FRLCSettingManager defaultManager];
@@ -106,45 +110,46 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
         self.currentFRL.firstRepayDate = [dateFormatter dateFromString:@"2015-05-01"];
     }
     
-    [self initLoanUI];
+    [self initButton];
+    [self initTableView];
     
     [self updateIRateForYearSection];
     
 }
 
 - (void)showMenu:(UIBarButtonItem *)sender{
-    float edgeLength = 35;
-    CGRect rect = CGRectMake(ScreenWidth - edgeLength - 20, edgeLength, edgeLength, edgeLength);
+    float edgeLength = 20;
+    CGRect rect = CGRectMake(ScreenWidth - edgeLength - 20, 0, edgeLength, edgeLength);
     
     [KxMenu setTintColor:[UIColor flatGreenColorDark]];
     [KxMenu showMenuInView:self.view
                   fromRect:rect
                  menuItems:@[
-                             [KxMenuItem menuItem:@"查询历史"
+                             [KxMenuItem menuItem:NSLocalizedString(@"查询历史",@"Query History")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(historyAction)],
-                             [KxMenuItem menuItem:@"公积金利率"
+                             [KxMenuItem menuItem:NSLocalizedString(@"公积金利率",@"HPF Rate")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(hpfAction)],
-                             [KxMenuItem menuItem:@"购买和恢复"
+                             [KxMenuItem menuItem:NSLocalizedString(@"购买和恢复",@"Purchase / Restore")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(inAppAction)],
-                             [KxMenuItem menuItem:@"微信朋友圈"
+                             [KxMenuItem menuItem:NSLocalizedString(@"微信朋友圈",@"WeChat Timeline")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(wxTimelineAction)],
-                             [KxMenuItem menuItem:@"微信好友"
+                             [KxMenuItem menuItem:NSLocalizedString(@"微信好友",@"WeChat Session")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(wxSessionAction)],
-                             [KxMenuItem menuItem:@"给个好评"
+                             [KxMenuItem menuItem:NSLocalizedString(@"给个好评",@"Praise me")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(praiseAction)],
-                             [KxMenuItem menuItem:@"关于"
+                             [KxMenuItem menuItem:NSLocalizedString(@"关于",@"About")
                                             image:[UIImage imageNamed:@"image"]
                                            target:self
                                            action:@selector(aboutAction)]
@@ -155,17 +160,6 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     FRLHistoryListVC *vc = [FRLHistoryListVC new];
     vc.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:vc animated:YES];
-    
-    /*
-    FloatingRateLoan *frl = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:kLastFRLData]];
-    
-    if (frl){
-        FRLResultVC *vc = [FRLResultVC new];
-        vc.currentFRL = frl;
-        vc.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-     */
 }
 
 - (void)hpfAction{
@@ -208,8 +202,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     WXMediaMessage *mediaMessage=[WXMediaMessage alloc];
     // WXWebpageObject : 会话显示title、description、thumbData（图标较小)，朋友圈显示title、thumbData（图标较小),两者都发送webpageUrl
     // WXImageObject   : 会话显示分享的图片，并以thumbData作为缩略图，朋友圈只显示分享的图片,两者都发送imageData
-    mediaMessage.title = NSLocalizedString(@"浮动利率计算器", @"");
-    mediaMessage.description = NSLocalizedString(@"还款金额不对？来试试更专业的计算器吧！每年贷款利率自定义，更有公积金贷款利率自动填充！",@"");
+    mediaMessage.title = NSLocalizedString(@"浮动利率贷款计算器", @"Floating Rate Loan Calculator");
+    mediaMessage.description = NSLocalizedString(@"还款金额不对？来试试更专业的计算器吧！每年贷款利率自定义，更有公积金利率自动填充！",@"Wrong monthly repayment? Try this professional loan rate calculator! Custom rate for every year!");
     mediaMessage.mediaObject = webpageObject;
     mediaMessage.thumbData = UIImageJPEGRepresentation([UIImage imageNamed:@"37-List 300_300"], 0.5);
     
@@ -222,35 +216,48 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     if(DEBUGMODE) NSLog(@"SendMessageToWXReq : %@",succeeded? @"Succeeded" : @"Failed");
 }
 
-- (void)initLoanUI{
+- (void)initButton{
+    calculateButton = [UIButton newAutoLayoutView];
+    [calculateButton setTitle:NSLocalizedString(@"开始计算",@"Calculate") forState:UIControlStateNormal];
+    [calculateButton setStyle:UIButtonStyleSuccess];
+    [calculateButton addTarget:self action:@selector(calculateBtnTD) forControlEvents:UIControlEventTouchDown];
+    
+    [self.view addSubview:calculateButton];
+    [calculateButton autoSetDimension:ALDimensionHeight toSize:40];
+    [calculateButton autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 10, 10, 10) excludingEdge:ALEdgeTop];
+}
+
+- (void)initTableView{
     WEAKSELF(weakSelf);
     
     self.loanTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.loanTableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.loanTableView];
-    [self.loanTableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    [self.loanTableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+    [self.loanTableView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:calculateButton withOffset:-10];
     
     self.reTVManager = [[RETableViewManager alloc] initWithTableView:self.loanTableView delegate:self];
     
-    loanInfoSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"贷款信息",@"")];
+    loanInfoSection=[RETableViewSection sectionWithHeaderTitle:NSLocalizedString(@"贷款信息",@"Loan Information")];
     
-    totalTextItem = [RETextItem itemWithTitle:NSLocalizedString(@"贷款总额",@"")
+    totalTextItem = [RETextItem itemWithTitle:NSLocalizedString(@"贷款总额",@"Total")
                                                   value:nil
-                                            placeholder:NSLocalizedString(@"请输入贷款总额",@"")];
+                                            placeholder:NSLocalizedString(@"请输入贷款总额（单位：元）",@"Enter the total loan")];
     totalTextItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
     totalTextItem.keyboardType = UIKeyboardTypeDecimalPad;
     
-    NSArray *valueArray = DEBUGMODE ? @[NSLocalizedString(@"20年",@"")] :@[NSLocalizedString(@"3年",@"")];
-    yearCountPickerItem = [REPickerItem itemWithTitle:@"贷款年限"
+    NSArray *valueArray = DEBUGMODE ? @[NSLocalizedString(@"20年",@"20 years")] :@[NSLocalizedString(@"3年",@"3 years")];
+    yearCountPickerItem = [REPickerItem itemWithTitle:NSLocalizedString(@"贷款年限",@"Term")
                                                 value:valueArray
-                                          placeholder:@"请选择"
+                                          placeholder:NSLocalizedString(@"请选择",@"Choose an item")
                                               options:@[yearCountArray]];
     yearCountPickerItem.onChange = ^(REPickerItem *item){
         weakSelf.currentFRL.nYearCount = [yearCountArray indexOfObject:item.value.firstObject] + 1;
         [weakSelf updateIRateForYearSection];
+        [weakSelf.loanTableView scrollsToTop];
     };
     
-    dateTimeItem=[REDateTimeItem itemWithTitle:NSLocalizedString(@"首次还款",@"")
+    dateTimeItem=[REDateTimeItem itemWithTitle:NSLocalizedString(@"首次还款",@"First repay date")
                                                          value:self.currentFRL.firstRepayDate
                                                    placeholder:nil
                                                         format:@"yyyy-MM"
@@ -261,15 +268,15 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     };
     dateTimeItem.inlineDatePicker=YES;
     
-    repayTypeSegItem=[RESegmentedItem itemWithTitle:NSLocalizedString(@"还款方式",@"")
-                                              segmentedControlTitles:@[NSLocalizedString(@"等额本金",@""),NSLocalizedString(@"等额本息",@"")]
+    repayTypeSegItem=[RESegmentedItem itemWithTitle:NSLocalizedString(@"还款方式",@"Repay style")
+                                              segmentedControlTitles:@[NSLocalizedString(@"等额本金",@"Average C"),NSLocalizedString(@"等额本息",@"Average C&I")]
                                                                value:0
                                             switchValueChangeHandler:^(RESegmentedItem *item) {
                                                 NSLog(@"Value: %ld", (long)item.value);
                                                 self.currentFRL.repayType = item.value;
                                             }];
     
-    customRateItem = [RETextItem itemWithTitle:NSLocalizedString(@"自定利率",@"")
+    customRateItem = [RETextItem itemWithTitle:NSLocalizedString(@"自定利率",@"Custom rate")
                                          value:[NSString stringWithFormat:@"%.2f",[FRLCSettingManager defaultManager].lastCustomRate]
                                   placeholder:nil];
     customRateItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
@@ -283,8 +290,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     };
     customRateItem.keyboardType = UIKeyboardTypeDecimalPad;
 
-    creditorTypeSegItem = [RESegmentedItem itemWithTitle:NSLocalizedString(@"使用利率",@"")
-                             segmentedControlTitles:@[NSLocalizedString(@"公积金",@""),NSLocalizedString(@"自定义",@"")]
+    creditorTypeSegItem = [RESegmentedItem itemWithTitle:NSLocalizedString(@"使用利率",@"Rate to use")
+                             segmentedControlTitles:@[NSLocalizedString(@"公积金",@"HPF loan rate"),NSLocalizedString(@"自定义",@"Custom rate")]
                                               value:1
                            switchValueChangeHandler:^(RESegmentedItem *item) {
                                if (item.value == LoanCreditorTypeCustom){
@@ -299,9 +306,10 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     
     [loanInfoSection addItemsFromArray:@[totalTextItem,yearCountPickerItem,dateTimeItem,repayTypeSegItem,creditorTypeSegItem,customRateItem]];
     
+    /*
     RETableViewSection *buttonSection=[RETableViewSection sectionWithHeaderTitle:nil];
     buttonSection.headerHeight = SectionHeaderHeight;
-    RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:NSLocalizedString(@"开始计算",@"")
+    RETableViewItem *buttonItem = [RETableViewItem itemWithTitle:NSLocalizedString(@"开始计算",@"Calculate")
                                                    accessoryType:UITableViewCellAccessoryNone
                                                 selectionHandler:^(RETableViewItem *item) {
                                                     [item reloadRowWithAnimation:UITableViewRowAnimationAutomatic];
@@ -309,8 +317,9 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
                                                 }];
     buttonItem.textAlignment = NSTextAlignmentCenter;
     [buttonSection addItem:buttonItem];
+    */
     
-    [self.reTVManager addSectionsFromArray:@[loanInfoSection,buttonSection]];
+    [self.reTVManager addSectionsFromArray:@[loanInfoSection]];
 
 }
 
@@ -348,19 +357,19 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     NSString *errorString;
     
     if ([totalTextItem.value floatValue] <= 0){
-        errorString = @"贷款总额不能为0";
+        errorString = NSLocalizedString(@"贷款总额不能为0。",@"The total loan can not be 0.");
         checkOK = NO;
     }
     
     for (RETextItem *iRateItem in iRateForYearItemMA) {
         if ([iRateItem.value floatValue] <= 0){
-            errorString = @"利率不能为0";
+            errorString = NSLocalizedString(@"利率不能为0。",@"The loan rate can not be 0.");
             checkOK = NO;
         }
     }
     
     if (errorString){
-        UIAlertController *ac = [UIAlertController informationAlertControllerWithTitle:@"错误" message:errorString];
+        UIAlertController *ac = [UIAlertController informationAlertControllerWithTitle:NSLocalizedString(@"错误",@"Error") message:errorString];
         [self presentViewController:ac animated:YES completion:nil];
     }
     return checkOK;
@@ -388,15 +397,15 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
             loanRate = [customRateItem.value floatValue];
         }
         
-        RETextItem *iRateItem=[RETextItem itemWithTitle:[[NSString alloc]initWithFormat:@"%ld年",(long)currentYear]
+        RETextItem *iRateItem=[RETextItem itemWithTitle:yearCountArray[yearIndex]
                                                       value:[[NSString alloc]initWithFormat:@"%.2f",loanRate]
-                                                placeholder:NSLocalizedString(@"本年利率",@"")];
+                                                placeholder:NSLocalizedString(@"本年利率",@"Rate for year")];
         iRateItem.onChangeCharacterInRange = [self createLimitInputBlockWithAllowedString:NumberAndDecimal];
         iRateItem.keyboardType = UIKeyboardTypeDecimalPad;
         [iRateForYearItemMA addObject:iRateItem];
     }
     
-    self.iRateForYearSection = [[RETableViewSection alloc] initWithHeaderTitle:@"年度利率"];
+    self.iRateForYearSection = [[RETableViewSection alloc] initWithHeaderTitle:NSLocalizedString(@"年度利率",@"Rates")];
     self.iRateForYearSection.headerHeight = SectionHeaderHeight;
     [self.iRateForYearSection addItemsFromArray:iRateForYearItemMA];
     [self.reTVManager insertSection:self.iRateForYearSection atIndex:1];

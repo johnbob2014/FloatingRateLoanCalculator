@@ -68,7 +68,7 @@
     
     [ms appendFormat:@"%.2f    ",frl.aTotal];
     [ms appendFormat:@"%ld年    ",(long)frl.nYearCount];
-    [ms appendString:frl.repayType == 0 ? @"等额本金":@"等额本息"];
+    [ms appendString:frl.repayType == 0 ? NSLocalizedString(@"等额本金",@""):NSLocalizedString(@"等额本息",@"")];
     
     cell.textLabel.text = ms;
     cell.detailTextLabel.text = [storer.queryDate stringWithFormat:@"yyyy-MM-dd hh:mm:ss"];

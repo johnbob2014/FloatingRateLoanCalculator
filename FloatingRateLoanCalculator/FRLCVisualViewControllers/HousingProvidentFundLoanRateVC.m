@@ -9,6 +9,8 @@
 #import "HousingProvidentFundLoanRateVC.h"
 #import "FRLCSettingManager.h"
 
+#define HeightForRow 30
+
 #import "GCDetailTableViewCell.h"
 
 @interface HousingProvidentFundLoanRateVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"公积金贷款利率";
+    self.title = NSLocalizedString(@"公积金贷款利率",@"Housing Provident Fund Loan Rate");
     
     dataDicArray = [FRLCSettingManager defaultManager].loanRateArrayForHousingProvidentFund;
     dataDicArray = dataDicArray.reverseObjectEnumerator.allObjects;
@@ -43,10 +45,6 @@
     
     [self.view addSubview:myTableView];
     [myTableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-//    [myTableView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:topInfoView withOffset:10];
-//    [myTableView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:buttonContainerView withOffset:-10];
-//    [myTableView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10];
-//    [myTableView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -54,7 +52,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 25;
+    return HeightForRow;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -69,7 +67,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 25;
+    return HeightForRow;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -85,13 +83,13 @@
         //[obj setStyle:UILabelStyleBrownBold];
         switch (idx) {
             case 0:
-                obj.text = NSLocalizedString(@"       调整时间", @"");
+                obj.text = NSLocalizedString(@"       调整时间", @"       Adjust Date");
                 break;
             case 1:
-                obj.text = NSLocalizedString(@"五年及以下", @"");
+                obj.text = NSLocalizedString(@"五年及以下", @"<= 5 years");
                 break;
             case 2:
-                obj.text = NSLocalizedString(@"五年以上", @"");
+                obj.text = NSLocalizedString(@"五年以上", @"> 5 years");
                 break;
             default:
                 break;

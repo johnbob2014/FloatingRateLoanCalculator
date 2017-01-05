@@ -25,6 +25,8 @@
 		4B0A24571E139C9D00324EB2 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B0A24561E139C9D00324EB2 /* libc++.tbd */; };
 		4B0BFBA51E0BCD30003BE68F /* UIAlertController+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */; };
 		4B0BFBA91E0BD45F003BE68F /* UIFont+Assistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */; };
+		4B0C81371E1E343D00AEE9B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0C81351E1E343D00AEE9B2 /* Localizable.strings */; };
+		4B0C813C1E1E347300AEE9B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0C813E1E1E347300AEE9B2 /* InfoPlist.strings */; };
 		4B0C8C011E1245B500ABD187 /* InAppPurchaseProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */; };
 		4B0C8C041E12497C00ABD187 /* InAppPurchaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0C8C031E12497C00ABD187 /* InAppPurchaseVC.m */; };
 		4B0E482E1E0908DE0049ED74 /* FRLCSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E482D1E0908DE0049ED74 /* FRLCSettingManager.m */; };
@@ -99,6 +101,13 @@
 		4B0BFBA41E0BCD30003BE68F /* UIAlertController+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Assistant.m"; sourceTree = "<group>"; };
 		4B0BFBA71E0BD45F003BE68F /* UIFont+Assistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Assistant.h"; sourceTree = "<group>"; };
 		4B0BFBA81E0BD45F003BE68F /* UIFont+Assistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Assistant.m"; sourceTree = "<group>"; };
+		4B0C81311E1E2B5D00AEE9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		4B0C81361E1E343D00AEE9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B0C81381E1E344E00AEE9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B0C81391E1E345000AEE9B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4B0C813D1E1E347300AEE9B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4B0C813F1E1E347600AEE9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4B0C81401E1E347800AEE9B2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		4B0C8BFF1E1245B500ABD187 /* InAppPurchaseProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InAppPurchaseProductListVC.h; path = FRLCVisualViewControllers/InAppPurchaseProductListVC.h; sourceTree = "<group>"; };
 		4B0C8C001E1245B500ABD187 /* InAppPurchaseProductListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InAppPurchaseProductListVC.m; path = FRLCVisualViewControllers/InAppPurchaseProductListVC.m; sourceTree = "<group>"; };
 		4B0C8C021E12497C00ABD187 /* InAppPurchaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseVC.h; sourceTree = "<group>"; };
@@ -162,7 +171,6 @@
 		4BDA2EBF1E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FloatingRateLoanCalculator.xcdatamodel; sourceTree = "<group>"; };
 		4BDA2EC11E028E8500939360 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BDA2EC41E028E8500939360 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4BDA2EC61E028E8500939360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BDA2ECC1E02962300939360 /* FRLInteractionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FRLInteractionVC.h; path = FRLCVisualViewControllers/FRLInteractionVC.h; sourceTree = "<group>"; };
 		4BDA2ECD1E02962300939360 /* FRLInteractionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FRLInteractionVC.m; path = FRLCVisualViewControllers/FRLInteractionVC.m; sourceTree = "<group>"; };
 		4BDA2ECF1E02972B00939360 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -437,7 +445,9 @@
 				4BDA2ECF1E02972B00939360 /* PrefixHeader.pch */,
 				4BDA2EC11E028E8500939360 /* Assets.xcassets */,
 				4BDA2EC31E028E8500939360 /* LaunchScreen.storyboard */,
-				4BDA2EC61E028E8500939360 /* Info.plist */,
+				4B0C81351E1E343D00AEE9B2 /* Localizable.strings */,
+				4B0C81321E1E2B5D00AEE9B2 /* Info.plist */,
+				4B0C813E1E1E347300AEE9B2 /* InfoPlist.strings */,
 				4BDA2EBE1E028E8500939360 /* FloatingRateLoanCalculator.xcdatamodeld */,
 				4BDA2EB21E028E8500939360 /* Supporting Files */,
 			);
@@ -545,6 +555,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4BDA2EA61E028E8500939360;
 			productRefGroup = 4BDA2EB01E028E8500939360 /* Products */;
@@ -566,7 +577,9 @@
 				4B67EA1E1E0372AD00BAD828 /* FontAwesome.ttf in Resources */,
 				4B0A243A1E13922D00324EB2 /* SVProgressHUD.bundle in Resources */,
 				4BBA61871E14EBA7006312D9 /* AppInfo.json in Resources */,
+				4B0C81371E1E343D00AEE9B2 /* Localizable.strings in Resources */,
 				4B0A244B1E13952000324EB2 /* README.txt in Resources */,
+				4B0C813C1E1E347300AEE9B2 /* InfoPlist.strings in Resources */,
 				4B80FD041E14AB2400FBFE0B /* LoanRate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,6 +688,34 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4B0C81321E1E2B5D00AEE9B2 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0C81311E1E2B5D00AEE9B2 /* Base */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
+		4B0C81351E1E343D00AEE9B2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0C81361E1E343D00AEE9B2 /* Base */,
+				4B0C81381E1E344E00AEE9B2 /* en */,
+				4B0C81391E1E345000AEE9B2 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4B0C813E1E1E347300AEE9B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B0C813D1E1E347300AEE9B2 /* Base */,
+				4B0C813F1E1E347600AEE9B2 /* en */,
+				4B0C81401E1E347800AEE9B2 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		4BDA2EC31E028E8500939360 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -690,6 +731,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -738,6 +780,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

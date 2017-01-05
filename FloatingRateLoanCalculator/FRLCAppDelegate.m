@@ -36,7 +36,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.tintColor = [UIColor flatGreenColorDark];
     
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[FRLInteractionVC new]];
+    FRLInteractionVC *interactionVC = [FRLInteractionVC new];
+    interactionVC.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:interactionVC];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     

@@ -24,7 +24,7 @@
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    self.title=NSLocalizedString(@"About", @"关于");
+    self.title=NSLocalizedString(@"关于",@"About");
     
     [self initAboutUI];
     
@@ -45,7 +45,7 @@
     [self.imageView autoAlignAxis:ALAxisVertical toSameAxisOfView:self.view withOffset:-80];
     
     self.nameLabel=[[UILabel alloc]initForAutoLayout];
-    self.nameLabel.text=NSLocalizedString(@"浮动利率计算器", @"");
+    self.nameLabel.text=NSLocalizedString(@"浮动利率", @"FRLC");
     self.nameLabel.font=[UIFont bodyFontWithSizeMultiplier:1.6];
     [self.view addSubview:self.nameLabel];
     [self.nameLabel autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.imageView withOffset:-10];
@@ -61,7 +61,7 @@
     self.bottomLabel=[[UILabel alloc]initForAutoLayout];
     self.bottomLabel.numberOfLines = 0;
     self.bottomLabel.font = [UIFont bodyFontWithSizeMultiplier:0.8];
-    self.bottomLabel.text=NSLocalizedString(@"Phone & WeChat : +86 17096027537\nEmail : johnbob2014@icloud.com\n2016 CTP Technology Co.,Ltd", @"手机 & 微信 : +86 17096027537\n邮箱 : johnbob2014@icloud.com\n2016 CTP Technology Co.,Ltd");
+    self.bottomLabel.text=NSLocalizedString(@"手机 & 微信 : +86 17096027537\n邮箱 : johnbob2014@icloud.com\n2016 CTP Technology Co.,Ltd",@"Phone & WeChat : +86 17096027537\nEmail : johnbob2014@icloud.com\n2016 CTP Technology Co.,Ltd");
     self.bottomLabel.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:self.bottomLabel];
     [self.bottomLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
@@ -75,7 +75,7 @@
     [self.detailTextView addGestureRecognizer:threeTouch_OneTapGR];
     self.detailTextView.editable=NO;
     self.detailTextView.font=[UIFont bodyFontWithSizeMultiplier:1.0];
-    self.detailTextView.text=NSLocalizedString(@"真正好用的专业贷款计算器。", @"");
+    self.detailTextView.text=NSLocalizedString(@"真正好用的专业贷款计算器。", @"Reaally powerful loan calculator.");
     
     self.detailTextView.backgroundColor = RandomFlatColor;
     self.detailTextView.textColor = [UIColor colorWithContrastingBlackOrWhiteColorOn:self.detailTextView.backgroundColor isFlat:YES];
@@ -92,9 +92,9 @@
         [FRLCSettingManager defaultManager].debugMode = ![FRLCSettingManager defaultManager].debugMode;
         
         if ([FRLCSettingManager defaultManager].debugMode){
-            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Enter debug mode", @"进入调试模式")];
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"进入调试模式",@"Enter debug mode" )];
         }else{
-            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"Quite debug mode", @"退出调试模式")];
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"退出调试模式",@"Quite debug mode" )];
         }
     
     //[SVProgressHUD dismissWithDelay:3.0];
@@ -102,13 +102,13 @@
 }
 
 - (void)threeTapGR:(UITapGestureRecognizer *)sender{
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Wait a moment...", @"请稍后...")];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"请稍后...",@"Wait a moment...")];
     [FRLCSettingManager updateAppInfoWithCompletionBlock:^{
         [SVProgressHUD dismiss];
         
         __block UITextField *tf;
-        UIAlertController *alertController = [UIAlertController singleTextFieldAlertControllerWithTitle:NSLocalizedString(@"FRLC", @"")
-                                                                                                message:NSLocalizedString(@"Enter debug code", @"请输入调试码")
+        UIAlertController *alertController = [UIAlertController singleTextFieldAlertControllerWithTitle:NSLocalizedString(@"FRLC", @"FRLC")
+                                                                                                message:NSLocalizedString(@"请输入调试码",@"Enter debug code")
                                                                                         okActionHandler:^(UIAlertAction *action) {
                                                                                             [self checkAppDebugCode:tf.text];
                                                                                         }
@@ -125,9 +125,9 @@
     if([[inputString SHA256] isEqualToString:[FRLCSettingManager defaultManager].appDebugCode]){
         [FRLCSettingManager defaultManager].hasPurchasedRepayAlert = YES;
         
-        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"^_^ Verify Succeeded", @"^_^ 验证成功")];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"^_^ 验证成功",@"^_^ Verify Succeeded")];
     }else{
-        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@">_< Verify Failed", @">_< 验证失败")];
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@">_< 验证失败",@">_< Verify Failed")];
     }
     
 }
