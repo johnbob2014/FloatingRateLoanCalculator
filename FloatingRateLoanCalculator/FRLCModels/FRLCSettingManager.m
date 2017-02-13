@@ -9,12 +9,6 @@
 #define AppID @"1190166507"
 #define AppWXID @"wxd8095af0c6b13296"
 
-//#define AppURLString @"https://itunes.apple.com/app/id1190166507"
-//#define AppProductIDArray @[@"com.ZhangBaoGuo.FloatingRateLoanCalculator.RepayAlertAndExportData"]
-//#define AppQRCodeImage @"FRLCAppQRCodeImage.png"
-//#define AppDebugCode @"2170f9442e52aad52e3c3b1c3b5d6a8a143289797b6b1fdab6e67d0fc6979668"
-
-
 #import "FRLCSettingManager.h"
 
 @implementation FRLCSettingManager
@@ -26,20 +20,6 @@
         instance = [[self alloc]init];
     });
     return instance;
-}
-
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        // 如果没有更新过 或者 距离上次更新时间超过1天，则进行更新，在后台进行
-        if (!self.appInfoLastUpdateDate || [[NSDate date] timeIntervalSinceDate:self.appInfoLastUpdateDate] > 24 * 60 * 60 ){
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [FRLCSettingManager updateAppInfoWithCompletionBlock:nil];
-                [FRLCSettingManager updateLoanRateWithCompletionBlock:nil];
-            });
-        }
-    }
-    return self;
 }
 
 #pragma mark - App Info
@@ -339,6 +319,15 @@
 
 - (void)setLastCustomRate:(float)lastCustomRate{
     [[NSUserDefaults standardUserDefaults] setFloat:lastCustomRate forKey:@"lastCustomRate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSInteger)praiseCount{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"praiseCount"];
+}
+
+- (void)setPraiseCount:(NSInteger)praiseCount{
+    [[NSUserDefaults standardUserDefaults] setInteger:praiseCount forKey:@"praiseCount"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

@@ -129,4 +129,9 @@
  */
 @property (assign,nonatomic) float lastCustomRate;
 
+/**
+ * 求赞统计数据
+ */
+@property (assign,nonatomic) NSInteger praiseCount;
+
 @end

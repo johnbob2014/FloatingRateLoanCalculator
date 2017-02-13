@@ -117,6 +117,37 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
     
 }
 
+- (BOOL)addAndObservePraiseCountToDecideWhetherToContinue{
+    settingManager.praiseCount++;
+    
+    if (settingManager.praiseCount == 5){
+        
+        [self askForPraise];
+        settingManager.praiseCount = 0;
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
+- (void)askForPraise{
+    NSString *alertTitle = NSLocalizedString(@"浮动利率计算器",@"Floating Rate");
+    NSString *alertMessage = NSLocalizedString(@"没有广告是不是很清爽？作者也不容易，抽空给个好评呗！🙏",@"Is it cool without any advertisements? The author is toil and moil. So take a little time to praise me, please!🙏");
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"去给好评",@"Praise") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:settingManager.appURLString]];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"残忍拒绝",@"I'm busy.") style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    
+    if (iOS9) alertController.preferredAction = okAction;
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 - (void)showMenu:(UIBarButtonItem *)sender{
     float edgeLength = 20;
     CGRect rect = CGRectMake(ScreenWidth - edgeLength - 20, 0, edgeLength, edgeLength);
@@ -157,6 +188,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
 }
 
 - (void)historyAction{
+    if(![self addAndObservePraiseCountToDecideWhetherToContinue]) return;
+    
     FRLHistoryListVC *vc = [FRLHistoryListVC new];
     vc.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController pushViewController:vc animated:YES];
@@ -324,6 +357,8 @@ typedef BOOL (^OnChangeCharacterInRange)(RETextItem *item, NSRange range, NSStri
 }
 
 - (void)calculateBtnTD{
+    if(![self addAndObservePraiseCountToDecideWhetherToContinue]) return;
+    
     if (![self checkInput]) return;
     
     self.currentFRL.aTotal = [totalTextItem.value floatValue];

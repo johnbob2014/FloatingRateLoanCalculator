@@ -25,6 +25,15 @@
     
     settingManager = [FRLCSettingManager defaultManager];
     
+    
+    // 如果没有更新过 或者 距离上次更新时间超过1天，则进行更新，在后台进行
+    if (!settingManager.appInfoLastUpdateDate || [[NSDate date] timeIntervalSinceDate:settingManager.appInfoLastUpdateDate] > 24 * 60 * 60 ){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [FRLCSettingManager updateAppInfoWithCompletionBlock:nil];
+            [FRLCSettingManager updateLoanRateWithCompletionBlock:nil];
+        });
+    }
+
     // 需要访问网络，在后台进行
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         //向微信注册id
